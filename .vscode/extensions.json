@@ -1,0 +1,8 @@
+{
+    "recommendations": [
+        "jpoissonnier.vscode-styled-components",
+        "esbenp.prettier-vscode",
+        "cesium.gltf-vscode",
+        "slevesque.shader"
+    ]
+}

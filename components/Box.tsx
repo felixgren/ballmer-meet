@@ -12,9 +12,9 @@ export default function Box(props: JSX.IntrinsicElements['mesh']) {
         {...props}
         ref={ref}
         scale={active ? 1.5 : 1}
-        onClick={(event) => setActive(!active)}
-        onPointerOver={(event) => setHover(true)}
-        onPointerOut={(event) => setHover(false)}>
+        onClick={(e) => setActive(!active)}
+        onPointerOver={(e) => setHover(true)}
+        onPointerOut={(e) => setHover(false)}>
         <boxGeometry args={[1, 1, 1]} />
         <meshStandardMaterial color={hovered ? 'hotpink' : 'orange'} />
       </mesh>

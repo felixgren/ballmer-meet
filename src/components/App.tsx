@@ -1,31 +1,31 @@
 import { Canvas } from '@react-three/fiber';
 import Box from './Box';
+import Plane from './Plane';
 import styled from 'styled-components';
 import 'styled-components/macro';
-import { OrbitControls, Plane } from '@react-three/drei';
+import { OrbitControls, Sky } from '@react-three/drei';
+import { Physics } from '@react-three/cannon';
+// import { useKeysToMove } from './hooks/userKeyboard';
 
 const Container = styled.div`
   width: 100vw;
   height: 100vh;
-  background-color: #f1f0f0;
+  /* background-color: #bb0d0d; */
 `;
 
 const App: React.FC = () => {
   return (
     <div id="App">
       <Container>
-        <Canvas camera={{ position: [20, 20, 20] }}>
+        <Canvas>
+          <Sky sunPosition={[100, 20, 100]} />
           <OrbitControls />
           <ambientLight intensity={0.5} />
           <spotLight position={[10, 15, 10]} angle={0.3} />
-          <Box position={[1, 1, 1]} scale={[5, 1, 1]} />
-          <Plane
-            position={[0, 0, 0]}
-            rotation-x={Math.PI / -2}
-            args={[100, 100, 4, 4]}
-          >
-            <meshPhongMaterial attach="material" />
-          </Plane>
+          <Physics gravity={[0, -30, 0]}>
+            <Box />
+            <Plane />
+          </Physics>
         </Canvas>
       </Container>
     </div>

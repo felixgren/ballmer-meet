@@ -1,23 +1,20 @@
-import * as THREE from 'three';
-import { useRef, useState } from 'react';
-import { useFrame } from '@react-three/fiber';
+import { useBox } from '@react-three/cannon';
+import { useThree, useFrame } from '@react-three/fiber';
+import { useKeysToMove } from './hooks/userKeyboard';
 
-export default function Box(props: JSX.IntrinsicElements['mesh']) {
-  const ref = useRef<THREE.Mesh>(null!);
-  const [hovered, setHover] = useState(false);
-  const [active, setActive] = useState(false);
-  // useFrame((state, delta) => (ref.current.rotation.x += 0.01));
+type boxProps = JSX.IntrinsicElements['mesh'];
+
+export default function Box(props: boxProps) {
+  const [ref] = useBox(() => ({
+    mass: 0.5,
+    args: [1.5, 1.5, 1.5],
+    position: [1, 5, 1],
+  }));
+
   return (
-    <mesh
-      {...props}
-      ref={ref}
-      scale={active ? 1.5 : 1}
-      onClick={(event) => setActive(!active)}
-      onPointerOver={(event) => setHover(true)}
-      onPointerOut={(event) => setHover(false)}
-    >
+    <mesh {...props} ref={ref}>
       <boxGeometry args={[1.5, 1.5, 1.5]} />
-      <meshStandardMaterial color={hovered ? 'hotpink' : 'orange'} />
+      <meshStandardMaterial color={'hotpink'} />
     </mesh>
   );
 }

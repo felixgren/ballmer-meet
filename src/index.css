@@ -11,3 +11,11 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+iframe {
+  display: none;
+}
+
+* {
+  background-color: rgb(15, 10, 10);
+}

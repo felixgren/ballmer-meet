@@ -8,7 +8,7 @@ interface IMovement {
   jump: boolean;
 }
 
-function movementKeys(e: any) {
+function movementKeys(key: string) {
   const keys = {
     KeyW: 'moveForwards',
     KeyS: 'moveBackwards',
@@ -16,8 +16,8 @@ function movementKeys(e: any) {
     KeyD: 'moveRight',
     Space: 'jump',
   };
-  console.log(e);
-  return keys;
+
+  return keys[key];
 }
 
 export const useKeysToMove = () => {
@@ -56,4 +56,5 @@ export const useKeysToMove = () => {
       document.removeEventListener('keyup', handleKeyUp);
     };
   });
+  return movement;
 };

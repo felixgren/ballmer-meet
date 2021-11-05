@@ -9,7 +9,7 @@ interface IMovement {
 }
 
 function movementKeys(key: string) {
-  const keys = {
+  const keys: any = {
     KeyW: 'moveForwards',
     KeyS: 'moveBackwards',
     KeyA: 'moveLeft',

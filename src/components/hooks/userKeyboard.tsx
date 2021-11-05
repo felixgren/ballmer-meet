@@ -8,16 +8,16 @@ interface IMovement {
   jump: boolean;
 }
 
-function movementKeys(e: any) {
-  const keys = {
+function movementKeys(key: string) {
+  const keys: any = {
     KeyW: 'moveForwards',
     KeyS: 'moveBackwards',
     KeyA: 'moveLeft',
     KeyD: 'moveRight',
     Space: 'jump',
   };
-  console.log(e);
-  return keys;
+
+  return keys[key];
 }
 
 export const useKeysToMove = () => {
@@ -56,4 +56,5 @@ export const useKeysToMove = () => {
       document.removeEventListener('keyup', handleKeyUp);
     };
   });
+  return movement;
 };

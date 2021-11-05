@@ -8,6 +8,7 @@ const speed: number = 5;
 type boxProps = JSX.IntrinsicElements['mesh'];
 
 export default function Box(props: boxProps) {
+  const moveTo = new Vector3();
   const { camera } = useThree();
   const { moveForwards, moveBackwards, moveLeft, moveRight, jump } =
     useKeysToMove();
@@ -23,7 +24,6 @@ export default function Box(props: boxProps) {
   }, [api.velocity]);
 
   useFrame(() => {
-    const moveTo = new Vector3();
     const moveToFrontOrBackVector = new Vector3(
       0,
       0,

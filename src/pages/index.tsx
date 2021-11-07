@@ -6,9 +6,12 @@ import Instructions from '@/components/dom/Instructions'
 // WARNING ! errors might get obfuscated by using dynamic import.
 // If something goes wrong go back to a static import to show the error.
 // https://github.com/pmndrs/react-three-next/issues/49
+
+// import Box from '@/components/canvas/Box'
 const Box = dynamic(() => import('@/components/canvas/Box'), {
   ssr: false,
 })
+
 
 
 // dom components goes here
@@ -44,7 +47,7 @@ export default Page
 export async function getStaticProps() {
   return {
     props: {
-      title: 'Index',
+      title: 'index',
     },
   }
 }

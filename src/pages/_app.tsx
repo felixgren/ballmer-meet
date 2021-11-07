@@ -7,14 +7,10 @@ import Dom from '@/components/layout/dom'
 
 import '@/styles/index.css'
 
-let LCanvas = null
-if (process.env.NODE_ENV === 'production') {
-  LCanvas = dynamic(() => import('@/components/layout/canvas'), {
+// import LCanvas from '@/components/layout/canvas';
+  let LCanvas = dynamic(() => import('@/components/layout/canvas'), {
     ssr: false,
   })
-} else {
-  LCanvas = require('@/components/layout/canvas').default
-}
 
 function Layout({ dom }) {
   return <>{dom && <Dom>{dom}</Dom>}</>
@@ -43,7 +39,6 @@ const ForwardPropsToR3fComponent = ({ comp, pageProps }) => {
     // fallback security for SSG
     // @ts-ignore
     return <comp {...pageProps} />
-    // here is ERROR
   }
 }
 

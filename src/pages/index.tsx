@@ -1,37 +1,28 @@
-import dynamic from 'next/dynamic'
-// Step 5 - delete Instructions components
-import Instructions from '@/components/dom/Instructions'
+// @ts-nocheck
+import dynamic from "next/dynamic";
+import TestText from "@/components/dom/TestText";
 
-// Dynamic import is used to prevent a payload when the website start that will include threejs r3f etc..
-// WARNING ! errors might get obfuscated by using dynamic import.
-// If something goes wrong go back to a static import to show the error.
+// Dynamic import is used to prevent r3f adding big initial JS load.
+// WARNING ! errors might get obfuscated w/ dynamic import. If error, go back to static.
 // https://github.com/pmndrs/react-three-next/issues/49
-
-// import Box from '@/components/canvas/Box'
-const Box = dynamic(() => import('@/components/canvas/Box'), {
+const Box = dynamic(() => import("@/components/canvas/Box"), {
   ssr: false,
-})
+});
+// import Box from '@/components/canvas/Box'
 
-
-
-// dom components goes here
-// we can benefit from putting any of multiple dom components here, basically reusable yeah!
 const DOM = () => {
   return (
-    // Step 5 - delete Instructions components
-    <Instructions />
-  )
-}
+    <TestText />
+  );
+};
 
-// canvas components goes here
-// shader contains its own box
 const R3F = () => {
   return (
     <>
-      <Box route='/box' />
+      <Box route="/box" />
     </>
-  )
-}
+  );
+};
 
 const Page = () => {
   return (
@@ -39,15 +30,15 @@ const Page = () => {
       <DOM />
       <R3F r3f />
     </>
-  )
-}
+  );
+};
 
-export default Page
+export default Page;
 
 export async function getStaticProps() {
   return {
     props: {
-      title: 'index',
+      title: "index",
     },
-  }
+  };
 }

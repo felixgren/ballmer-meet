@@ -1,4 +1,5 @@
-### Default gitignore START ###
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
 # dependencies
 /node_modules
 /.pnp
@@ -34,11 +35,9 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
-### Default gitignore END ###
 
-# old project
-old
-# default next
-styles
-pages/api
-pages/default-next
+# custom start
+old-nextjs
+pages/api/
+styles/
+# custom end

@@ -3,17 +3,11 @@ import { Sky, OrbitControls } from '@react-three/drei';
 import { Physics } from '@react-three/cannon';
 import Plane from '@/components/Plane';
 import Box from '@/components/Box';
-import styled from 'styled-components';
-
-const Container = styled.div`
-  width: 100vw;
-  height: 100vh;
-`;
+import styles from '../styles/index.module.css'
 
 const Game: React.FC = () => {
   return (
-    <div id="App">
-      <Container>
+    <div className={styles.container}>
         <Canvas>
           <OrbitControls />
           <Sky sunPosition={[100, 20, 100]} />
@@ -24,7 +18,6 @@ const Game: React.FC = () => {
             <Plane />
           </Physics>
         </Canvas>
-      </Container>
     </div>
   );
 };

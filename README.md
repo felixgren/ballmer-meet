@@ -10,8 +10,8 @@ three-fiber, socket.io, express/fastify, webRTC.
 
 **Prerequisites**
 
--   [UNIX based OS (mac, linux or WSL2 for windows)](https://docs.microsoft.com/en-us/windows/wsl/install-win10)
--   npm
+- [UNIX based OS (mac, linux or WSL2 for windows)](https://docs.microsoft.com/en-us/windows/wsl/install-win10)
+- npm
 
 ### Setting up project
 
@@ -21,7 +21,6 @@ cd examensarbete
 npm install
 npm start
 ```
-
 
 <details>
 <summary>Next.js bootstrapped readme</summary>

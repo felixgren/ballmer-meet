@@ -1,20 +1,20 @@
 import { useState, useEffect } from 'react';
 
 interface IMovement {
-  moveForwards: boolean;
-  moveBackwards: boolean;
-  moveLeft: boolean;
-  moveRight: boolean;
-  jump: boolean;
+  keyForward: boolean;
+  keyBack: boolean;
+  keyLeft: boolean;
+  keyRight: boolean;
+  keyJump: boolean;
 }
 
 function movementKeys(key: string) {
   const keys: any = {
-    KeyW: 'moveForwards',
-    KeyS: 'moveBackwards',
-    KeyA: 'moveLeft',
-    KeyD: 'moveRight',
-    Space: 'jump',
+    KeyW: 'keyForward',
+    KeyS: 'keyBack',
+    KeyA: 'keyLeft',
+    KeyD: 'keyRight',
+    Space: 'keyJump',
   };
 
   return keys[key];
@@ -22,11 +22,11 @@ function movementKeys(key: string) {
 
 export const useKeysToMove = () => {
   const [movement, setMovement] = useState<IMovement>({
-    moveForwards: false,
-    moveBackwards: false,
-    moveLeft: false,
-    moveRight: false,
-    jump: false,
+    keyForward: false,
+    keyBack: false,
+    keyLeft: false,
+    keyRight: false,
+    keyJump: false,
   });
 
   useEffect(() => {

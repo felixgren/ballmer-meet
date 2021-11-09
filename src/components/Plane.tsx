@@ -5,9 +5,15 @@ export default function Plane() {
     rotation: [-Math.PI / 2, 0, 0],
   }));
   return (
-    <mesh ref={ref} rotation={[-Math.PI / 2, 0, 0]}>
-      <planeBufferGeometry attach="geometry" args={[100, 100]} />
-      <meshLambertMaterial attach="material" color="lightblue" />
-    </mesh>
+    <group>
+      <mesh ref={ref} rotation={[-Math.PI / 2, 0, 0]}>
+        <planeBufferGeometry attach="geometry" args={[100, 100]} />
+        <meshLambertMaterial attach="material" color="lightblue" />
+      </mesh>
+      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -50.1, 0]}>
+        <boxBufferGeometry attach="geometry" args={[100, 100, 100]} />
+        <meshPhongMaterial attach="material" color="hotpink" />
+      </mesh>
+    </group>
   );
 }

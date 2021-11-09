@@ -3,13 +3,15 @@ import { useEffect, useRef } from 'react';
 import { useThree, useFrame } from '@react-three/fiber';
 import { Vector3 } from 'three';
 import { useKeysToMove } from './hooks/userKeyboard';
+import * as THREE from 'three';
+import { PositionalAudio } from '@react-three/drei';
 
-const speed: number = 5;
+const speed: number = 10;
 const playerVelocity = new Vector3();
 const frontBackVector = new Vector3(0, 0, 1);
 const sidesVector = new Vector3(1, 0, 0);
-
 type boxProps = JSX.IntrinsicElements['mesh'];
+
 export default function Box(props: boxProps) {
   const { camera } = useThree();
   const { keyForward, keyBack, keyLeft, keyRight, keyJump } = useKeysToMove();

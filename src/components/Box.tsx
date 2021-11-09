@@ -3,8 +3,6 @@ import { useEffect, useRef } from 'react';
 import { useThree, useFrame } from '@react-three/fiber';
 import { Vector3 } from 'three';
 import { useKeysToMove } from './hooks/userKeyboard';
-import * as THREE from 'three';
-import { PositionalAudio } from '@react-three/drei';
 
 const speed: number = 10;
 const playerVelocity = new Vector3();
@@ -46,7 +44,7 @@ export default function Box(props: boxProps) {
   return (
     <mesh {...props} ref={ref}>
       <boxGeometry args={[1.5, 1.5, 1.5]} />
-      <meshStandardMaterial color={'blue'} />
+      <meshStandardMaterial color={'gold'} />
     </mesh>
   );
 }

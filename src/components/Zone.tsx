@@ -3,7 +3,7 @@ import { useCylinder } from '@react-three/cannon';
 import Trigger from '@/components/hooks/trigger';
 
 export default function Zone() {
-  const [ref] = useCylinder(() => ({ args: [10, 10, 10] }));
+  const [ref] = useCylinder(() => ({ args: [10, 10, 10], type: 'Static' }));
   return (
     <group>
       <mesh position={[-20, 0, -20]} rotation={[-Math.PI / 2, 0, 0]} ref={ref}>
@@ -14,7 +14,7 @@ export default function Zone() {
             }}
           />
           <cylinderGeometry args={[10, 10, 10]} />
-          <meshPhongMaterial attach="material" color="skyblue" />
+          <meshStandardMaterial wireframe color="green" />
         </Cylinder>
       </mesh>
 
@@ -26,7 +26,7 @@ export default function Zone() {
             }}
           />
           <cylinderGeometry args={[10, 10, 10]} />
-          <meshPhongMaterial attach="material" color="lightpink" />
+          <meshStandardMaterial wireframe color="hotpink" />
         </Cylinder>
       </mesh>
     </group>

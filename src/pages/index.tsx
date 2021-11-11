@@ -21,8 +21,8 @@ const Game: React.FC = () => {
           enablePan={false}
         />
         <Sky sunPosition={[160, 10, -200]} distance={700} />
-        <ambientLight intensity={0.5} />
-        <spotLight position={[10, 15, 10]} angle={0.3} />
+        <ambientLight intensity={0.5} position={[160, 10, -200]} />
+
         <Physics gravity={[0, -30, 0]}>
           <Box />
           <Zone />

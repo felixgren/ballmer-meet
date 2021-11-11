@@ -3,6 +3,7 @@ import { Sky, OrbitControls } from '@react-three/drei';
 import { Physics } from '@react-three/cannon';
 import Plane from '@/components/Plane';
 import Box from '@/components/Box';
+import Zone from '@/components/Zone';
 import styles from '../styles/index.module.css';
 
 const Game: React.FC = () => {
@@ -24,6 +25,7 @@ const Game: React.FC = () => {
         <spotLight position={[10, 15, 10]} angle={0.3} />
         <Physics gravity={[0, -30, 0]}>
           <Box />
+          <Zone />
           <Plane />
         </Physics>
       </Canvas>

@@ -42,9 +42,9 @@ export default function Box(props: boxProps) {
   });
 
   return (
-    <mesh {...props} ref={ref}>
+    <mesh {...props} ref={ref} position={[30, 0, 0]}>
       <boxGeometry args={[1.5, 1.5, 1.5]} />
-      <meshStandardMaterial color={'blue'} />
+      <meshStandardMaterial color={'gold'} />
     </mesh>
   );
 }

@@ -3,7 +3,7 @@ import { Sky, OrbitControls } from '@react-three/drei';
 import { Physics } from '@react-three/cannon';
 import Plane from '@/components/Plane';
 import Box from '@/components/Box';
-import Zone from '@/components/Zone';
+import Zone from '@/components/TriggerZones';
 import styles from '../styles/index.module.css';
 
 const Game: React.FC = () => {

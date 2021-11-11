@@ -10,7 +10,7 @@ const frontBackVector = new Vector3(0, 0, 1);
 const sidesVector = new Vector3(1, 0, 0);
 type boxProps = JSX.IntrinsicElements['mesh'];
 
-export default function Box(props: boxProps) {
+export default function PlayerBox(props: boxProps) {
   const { camera } = useThree();
   const { keyForward, keyBack, keyLeft, keyRight, keyJump } = useKeysToMove();
   const [ref, api] = useBox(() => ({

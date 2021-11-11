@@ -1,9 +1,9 @@
 import { Canvas } from '@react-three/fiber';
 import { Sky, OrbitControls } from '@react-three/drei';
 import { Physics } from '@react-three/cannon';
-import Plane from '@/components/Plane';
-import Box from '@/components/Box';
-import Zone from '@/components/TriggerZones';
+import Map from '@/components/Map';
+import PlayerBox from '@/components/PlayerBox';
+import TriggerZones from '@/components/TriggerZones';
 import styles from '../styles/index.module.css';
 
 const Game: React.FC = () => {
@@ -24,9 +24,9 @@ const Game: React.FC = () => {
         <ambientLight intensity={0.5} position={[160, 10, -200]} />
 
         <Physics gravity={[0, -30, 0]}>
-          <Box />
-          <Zone />
-          <Plane />
+          <Map />
+          <PlayerBox />
+          <TriggerZones />
         </Physics>
       </Canvas>
     </div>

@@ -4,7 +4,7 @@ import { useThree, useFrame } from '@react-three/fiber';
 import { Vector3 } from 'three';
 import { useKeysToMove } from './hooks/userKeyboard';
 
-const speed: number = 10;
+const speed: number = 50;
 const playerVelocity = new Vector3();
 const frontBackVector = new Vector3(0, 0, 1);
 const sidesVector = new Vector3(1, 0, 0);

@@ -3,8 +3,9 @@ import { useEffect, useRef } from 'react';
 import { useThree, useFrame } from '@react-three/fiber';
 import { Vector3 } from 'three';
 import { useKeysToMove } from './hooks/userKeyboard';
+import useStore from '@/components/helpers/store';
 
-const speed: number = 10;
+const speed: number = 50;
 const playerVelocity = new Vector3();
 const frontBackVector = new Vector3(0, 0, 1);
 const sidesVector = new Vector3(1, 0, 0);
@@ -23,6 +24,10 @@ export default function PlayerBox(props: boxProps) {
   useEffect(() => {
     api.velocity.subscribe((v) => (velocity.current = v));
   }, [api.velocity]);
+
+  useEffect(() => {
+    useStore.setState({ dumbRef: ref, dumbApi: api });
+  }, []);
 
   useFrame(() => {
     frontBackVector.set(0, 0, (keyBack ? 1 : 0) - (keyForward ? 1 : 0));

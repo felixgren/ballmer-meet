@@ -1,4 +1,12 @@
-import { usePlane, useBox, PlaneProps, BoxProps } from '@react-three/cannon';
+import {
+  usePlane,
+  useBox,
+  PlaneProps,
+  BoxProps,
+  Physics,
+} from '@react-three/cannon';
+import { useFrame } from '@react-three/fiber';
+import useStore from '@/components/helpers/store';
 
 function CubeWorld({ args, position, rotation }: BoxProps) {
   const [ref] = useBox(() => ({ type: 'Static', args, position }));
@@ -17,12 +25,13 @@ function CubeWorld({ args, position, rotation }: BoxProps) {
 }
 
 function FallPlane({ onCollide }: PlaneProps) {
-  const [ref] = usePlane(() => ({
+  const [ref, api] = usePlane(() => ({
     type: 'Static',
     onCollide,
     position: [0, -50, 0],
     rotation: [-Math.PI / 2, 0, 0],
   }));
+  // console.log(api);
   return (
     <mesh ref={ref}>
       <planeBufferGeometry args={[200, 200]} />
@@ -31,7 +40,30 @@ function FallPlane({ onCollide }: PlaneProps) {
   );
 }
 
+function RespawnPlayer(e: any) {
+  // console.log(e);
+  // const dumbApi = useStore((state) => state.dumbApi);
+  // console.log(dumbApi);
+  // return dumbApi.setState({
+  //   player: {
+  //     position: [0, 0, 0],
+  //     rotation: [0, 0, 0],
+  //   },
+  // });
+}
+
 export default function Map() {
+  const dumbApi = useStore((state) => state.dumbApi);
+  console.log(dumbApi);
+  if (dumbApi) {
+    console.log(dumbApi);
+  }
+  useFrame(() => {
+    if (dumbApi) {
+      dumbApi.position.set(0, 0, 0);
+    }
+  });
+
   return (
     <group>
       <CubeWorld
@@ -39,7 +71,11 @@ export default function Map() {
         position={[0, -50, 0]}
         rotation={[-Math.PI / 2, 0, 0]}
       />
-      <FallPlane />
+      <FallPlane
+        onCollide={(e) => {
+          RespawnPlayer(e);
+        }}
+      />
     </group>
   );
 }

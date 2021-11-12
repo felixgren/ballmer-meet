@@ -1,12 +1,21 @@
 import { Canvas } from '@react-three/fiber';
 import { Sky, OrbitControls } from '@react-three/drei';
-import { Physics } from '@react-three/cannon';
+import { Physics, Debug } from '@react-three/cannon';
 import Map from '@/components/Map';
 import PlayerBox from '@/components/PlayerBox';
 import TriggerZones from '@/components/TriggerZones';
 import styles from '../styles/index.module.css';
+import { useBox } from '@react-three/cannon';
 
 const Game: React.FC = () => {
+  // const [ref, api] = useBox(() => ({
+  //   mass: 0.5,
+  //   args: [1.5, 1.5, 1.5],
+  //   position: [1, 5, 1],
+  //   type: 'Dynamic',
+  // }));
+  // console.log(ref);
+  // console.log(api);
   return (
     <div className={styles.container}>
       <Canvas camera={{ position: [0, 60, 120], fov: 50 }}>
@@ -25,7 +34,9 @@ const Game: React.FC = () => {
 
         <Physics gravity={[0, -30, 0]}>
           <Map />
-          <PlayerBox />
+          <Debug color="black">
+            <PlayerBox />
+          </Debug>
           <TriggerZones />
         </Physics>
       </Canvas>

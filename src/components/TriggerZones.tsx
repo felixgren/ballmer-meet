@@ -1,5 +1,4 @@
 import { useCylinder, CylinderProps } from '@react-three/cannon';
-import { useState, useEffect } from 'react';
 import { Color } from 'three';
 
 interface ZoneProps extends CylinderProps {

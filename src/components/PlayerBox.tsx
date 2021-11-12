@@ -26,7 +26,7 @@ export default function PlayerBox(props: boxProps) {
   }, [api.velocity]);
 
   useEffect(() => {
-    useStore.setState({ dumbRef: ref, dumbApi: api });
+    useStore.setState({ boxRef: ref, boxAPI: api });
   }, []);
 
   useFrame(() => {

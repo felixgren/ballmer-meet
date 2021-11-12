@@ -41,7 +41,10 @@ export default function Map() {
   useFrame(() => {
     if (boxAPI && respawnPlayer.current) {
       console.log('You fell off, respawning player');
-      boxAPI.position.set(0, 10, 0);
+      // Generates random numbers between -10 and 10
+      const x = Math.floor(Math.random() * 20) - 10;
+      const z = Math.floor(Math.random() * 20) - 10;
+      boxAPI.position.set(x, 65, z);
       respawnPlayer.current = false;
     }
   });

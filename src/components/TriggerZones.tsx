@@ -58,7 +58,7 @@ export default function Zone() {
   return (
     <group>
       <ZoneTrigger
-        position={[20, 5, 10]}
+        position={[30, 6, 10]}
         args={[10, 10, 10]}
         color={'red'}
         name={'red room is great'}
@@ -71,7 +71,7 @@ export default function Zone() {
       />
 
       <ZoneTrigger
-        position={[-20, 5, 10]}
+        position={[-30, 6, 10]}
         args={[10, 10, 10]}
         color={'blue'}
         name={'the blue room'}

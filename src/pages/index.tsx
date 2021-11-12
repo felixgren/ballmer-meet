@@ -23,7 +23,7 @@ const Game: React.FC = () => {
         <Sky sunPosition={[160, 10, -200]} distance={700} />
         <ambientLight intensity={0.5} position={[160, 10, -200]} />
 
-        <Physics gravity={[0, -30, 0]}>
+        <Physics gravity={[0, -9.8, 0]} iterations={20} tolerance={0}>
           <Map />
           <Debug color="black">
             <PlayerBox />

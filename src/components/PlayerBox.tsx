@@ -5,7 +5,7 @@ import { Vector3 } from 'three';
 import { useKeysToMove } from './hooks/userKeyboard';
 import useStore from '@/components/helpers/store';
 
-const speed: number = 50;
+const speed: number = 7;
 const playerVelocity = new Vector3();
 const frontBackVector = new Vector3(0, 0, 1);
 const sidesVector = new Vector3(1, 0, 0);
@@ -15,7 +15,7 @@ export default function PlayerBox(props: boxProps) {
   const { camera } = useThree();
   const { keyForward, keyBack, keyLeft, keyRight, keyJump } = useKeysToMove();
   const [ref, api] = useBox(() => ({
-    mass: 0.5,
+    mass: 70,
     args: [1.5, 1.5, 1.5],
     position: [1, 5, 1],
     type: 'Dynamic',
@@ -26,6 +26,7 @@ export default function PlayerBox(props: boxProps) {
   }, [api.velocity]);
 
   useEffect(() => {
+    console.log('Set boxRef BoxApi states');
     useStore.setState({ boxRef: ref, boxAPI: api });
   }, []);
 

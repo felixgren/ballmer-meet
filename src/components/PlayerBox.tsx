@@ -22,7 +22,6 @@ function Sound({ url }) {
     sound.current.setVolume(1);
     sound.current.play();
     camera.add(listener);
-    return () => camera.remove(listener);
   }, [buffer, camera, listener]);
   return <positionalAudio ref={sound} args={[listener]} />;
 }
@@ -46,6 +45,16 @@ export default function PlayerBox(props: boxProps) {
   useEffect(() => {
     api.velocity.subscribe((v) => (velocity.current = v));
   }, [api.velocity]);
+
+  camera.children.forEach((child) => {
+    if (
+      child instanceof THREE.AudioListener &&
+      child.context.state !== 'running'
+    ) {
+      child.context.resume();
+      console.log('Resumed audio, should optimize this later I think');
+    }
+  });
 
   useFrame(() => {
     frontBackVector.set(0, 0, (keyBack ? 1 : 0) - (keyForward ? 1 : 0));

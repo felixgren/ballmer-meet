@@ -28,7 +28,7 @@ export default function PlayerBox(props: boxProps) {
   useEffect(() => {
     console.log('Set boxRef BoxApi states');
     useStore.setState({ boxRef: ref, boxAPI: api });
-  }, []);
+  }, [ref, api]);
 
   useFrame(() => {
     frontBackVector.set(0, 0, (keyBack ? 1 : 0) - (keyForward ? 1 : 0));

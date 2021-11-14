@@ -3,18 +3,19 @@ import { useEffect, useRef } from 'react';
 import { useThree, useFrame } from '@react-three/fiber';
 import { Vector3 } from 'three';
 import { useKeysToMove } from './hooks/userKeyboard';
+import useStore from '@/components/helpers/store';
 
-const speed: number = 10;
+const speed: number = 7;
 const playerVelocity = new Vector3();
 const frontBackVector = new Vector3(0, 0, 1);
 const sidesVector = new Vector3(1, 0, 0);
 type boxProps = JSX.IntrinsicElements['mesh'];
 
-export default function Box(props: boxProps) {
+export default function PlayerBox(props: boxProps) {
   const { camera } = useThree();
   const { keyForward, keyBack, keyLeft, keyRight, keyJump } = useKeysToMove();
   const [ref, api] = useBox(() => ({
-    mass: 0.5,
+    mass: 70,
     args: [1.5, 1.5, 1.5],
     position: [1, 5, 1],
     type: 'Dynamic',
@@ -23,6 +24,11 @@ export default function Box(props: boxProps) {
   useEffect(() => {
     api.velocity.subscribe((v) => (velocity.current = v));
   }, [api.velocity]);
+
+  useEffect(() => {
+    console.log('Set boxRef BoxApi states');
+    useStore.setState({ boxRef: ref, boxAPI: api });
+  }, [ref, api]);
 
   useFrame(() => {
     frontBackVector.set(0, 0, (keyBack ? 1 : 0) - (keyForward ? 1 : 0));
@@ -42,9 +48,9 @@ export default function Box(props: boxProps) {
   });
 
   return (
-    <mesh {...props} ref={ref}>
+    <mesh {...props} ref={ref} position={[30, 0, 0]}>
       <boxGeometry args={[1.5, 1.5, 1.5]} />
-      <meshStandardMaterial color={'blue'} />
+      <meshStandardMaterial color={'gold'} />
     </mesh>
   );
 }

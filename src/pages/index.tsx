@@ -1,8 +1,9 @@
 import { Canvas } from '@react-three/fiber';
 import { Sky, OrbitControls } from '@react-three/drei';
-import { Physics } from '@react-three/cannon';
-import Plane from '@/components/Plane';
-import Box from '@/components/Box';
+import { Physics, Debug } from '@react-three/cannon';
+import Map from '@/components/Map';
+import PlayerBox from '@/components/PlayerBox';
+import TriggerZones from '@/components/TriggerZones';
 import styles from '../styles/index.module.css';
 
 const Game: React.FC = () => {
@@ -20,11 +21,14 @@ const Game: React.FC = () => {
           enablePan={false}
         />
         <Sky sunPosition={[160, 10, -200]} distance={700} />
-        <ambientLight intensity={0.5} />
-        <spotLight position={[10, 15, 10]} angle={0.3} />
-        <Physics gravity={[0, -30, 0]}>
-          <Box />
-          <Plane />
+        <ambientLight intensity={0.5} position={[160, 10, -200]} />
+
+        <Physics gravity={[0, -9.8, 0]} iterations={20} tolerance={0}>
+          <Map />
+          <Debug color="black">
+            <PlayerBox />
+          </Debug>
+          <TriggerZones />
         </Physics>
       </Canvas>
     </div>

@@ -1,11 +1,10 @@
 //@ts-nocheck
 import { useBox } from '@react-three/cannon';
-import { useEffect, useRef } from 'react';
-import { useThree, useFrame } from '@react-three/fiber';
+import { useEffect, useRef, useState } from 'react';
+import { useThree, useFrame, useLoader } from '@react-three/fiber';
 import { Vector3 } from 'three';
 import { useKeysToMove } from './hooks/userKeyboard';
 import * as THREE from 'three';
-import Song from '../audio/Developers.mp3';
 
 function Sound({ url }) {
   const sound = useRef();
@@ -18,9 +17,9 @@ function Sound({ url }) {
     sound.current.setRefDistance(1);
     sound.current.setDistanceModel('linear');
     sound.current.setRolloffFactor(2);
-    sound.current.setMaxDistance(20);
+    sound.current.setMaxDistance(100);
     sound.current.setLoop(true);
-    sound.current.setVolume(0.6);
+    sound.current.setVolume(1);
     sound.current.play();
     camera.add(listener);
     return () => camera.remove(listener);
@@ -67,7 +66,7 @@ export default function PlayerBox(props: boxProps) {
 
   return (
     <mesh {...props} ref={ref} position={[30, 0, 0]}>
-      <Sound url={Song} />
+      <Sound url={'audio/Developers.mp3'} />
       <boxGeometry args={[1.5, 1.5, 1.5]} />
       <meshStandardMaterial color={'gold'} />
     </mesh>

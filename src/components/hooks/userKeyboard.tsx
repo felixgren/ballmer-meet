@@ -52,6 +52,8 @@ export const useKeysToMove = () => {
     document.addEventListener('keydown', handleKeyDown);
     document.addEventListener('keyup', handleKeyUp);
     return () => {
+      // There is a bug here, the event listener is not removed
+      // Check JS event listener count in chrome dev tools performance monitor
       document.removeEventListener('keydown', handleKeyDown);
       document.removeEventListener('keyup', handleKeyUp);
     };

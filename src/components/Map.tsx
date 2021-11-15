@@ -1,4 +1,7 @@
 import { usePlane, useBox, PlaneProps, BoxProps } from '@react-three/cannon';
+import { useFrame } from '@react-three/fiber';
+import useStore from '@/components/helpers/store';
+import { useRef } from 'react';
 
 function CubeWorld({ args, position, rotation }: BoxProps) {
   const [ref] = useBox(() => ({ type: 'Static', args, position }));
@@ -32,6 +35,20 @@ function FallPlane({ onCollide }: PlaneProps) {
 }
 
 export default function Map() {
+  const boxAPI = useStore((state) => state.boxAPI);
+  let respawnPlayer = useRef(false);
+
+  useFrame(() => {
+    if (boxAPI && respawnPlayer.current) {
+      console.log('You fell off, respawning player');
+      // Generates random numbers between -10 and 10
+      const x = Math.floor(Math.random() * 20) - 10;
+      const z = Math.floor(Math.random() * 20) - 10;
+      boxAPI.position.set(x, 65, z);
+      respawnPlayer.current = false;
+    }
+  });
+
   return (
     <group>
       <CubeWorld
@@ -39,7 +56,11 @@ export default function Map() {
         position={[0, -50, 0]}
         rotation={[-Math.PI / 2, 0, 0]}
       />
-      <FallPlane />
+      <FallPlane
+        onCollide={() => {
+          respawnPlayer.current = true;
+        }}
+      />
     </group>
   );
 }

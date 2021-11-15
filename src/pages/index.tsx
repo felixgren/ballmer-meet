@@ -1,6 +1,6 @@
 import { Canvas } from '@react-three/fiber';
 import { Sky, OrbitControls } from '@react-three/drei';
-import { Physics } from '@react-three/cannon';
+import { Physics, Debug } from '@react-three/cannon';
 import Map from '@/components/Map';
 import PlayerBox from '@/components/PlayerBox';
 import TriggerZones from '@/components/TriggerZones';
@@ -23,9 +23,11 @@ const Game: React.FC = () => {
         <Sky sunPosition={[160, 10, -200]} distance={700} />
         <ambientLight intensity={0.5} position={[160, 10, -200]} />
 
-        <Physics gravity={[0, -30, 0]}>
+        <Physics gravity={[0, -9.8, 0]} iterations={20} tolerance={0}>
           <Map />
-          <PlayerBox />
+          <Debug color="black">
+            <PlayerBox />
+          </Debug>
           <TriggerZones />
         </Physics>
       </Canvas>

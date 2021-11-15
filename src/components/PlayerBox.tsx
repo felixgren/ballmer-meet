@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import { useThree, useFrame, useLoader } from '@react-three/fiber';
 import { Vector3 } from 'three';
 import { useKeysToMove } from './hooks/userKeyboard';
+import useStore from '@/components/helpers/store';
 import * as THREE from 'three';
 
 function Sound({ url }) {
@@ -26,7 +27,7 @@ function Sound({ url }) {
   return <positionalAudio ref={sound} args={[listener]} />;
 }
 
-const speed: number = 10;
+const speed: number = 7;
 const playerVelocity = new Vector3();
 const frontBackVector = new Vector3(0, 0, 1);
 const sidesVector = new Vector3(1, 0, 0);
@@ -36,7 +37,7 @@ export default function PlayerBox(props: boxProps) {
   const { camera } = useThree();
   const { keyForward, keyBack, keyLeft, keyRight, keyJump } = useKeysToMove();
   const [ref, api] = useBox(() => ({
-    mass: 0.5,
+    mass: 70,
     args: [1.5, 1.5, 1.5],
     position: [1, 5, 1],
     type: 'Dynamic',
@@ -45,6 +46,10 @@ export default function PlayerBox(props: boxProps) {
   useEffect(() => {
     api.velocity.subscribe((v) => (velocity.current = v));
   }, [api.velocity]);
+  useEffect(() => {
+    console.log('Set boxRef BoxApi states');
+    useStore.setState({ boxRef: ref, boxAPI: api });
+  }, [ref, api]);
 
   camera.children.forEach((child) => {
     if (

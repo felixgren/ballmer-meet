@@ -2,25 +2,28 @@
 // Custom Positional audio component
 
 import { useEffect, useRef, useState } from 'react';
-import { useThree, useLoader } from '@react-three/fiber';
+import { AudioLoader, AudioListener } from 'three';
+import { useLoader } from '@react-three/fiber';
 import useStore from '@/components/helpers/store';
-import * as THREE from 'three';
 
 export default function PositionalAudio({ url }) {
   const sound = useRef();
-  const [listener] = useState(() => new THREE.AudioListener());
-  const buffer = useLoader(THREE.AudioLoader, url);
-  const { camera } = useThree();
-  const boxRef = useStore((state) => state.boxRef);
+  const [listener] = useState(() => new AudioListener());
+  const buffer = useLoader(AudioLoader, url);
+  const playerRef = useStore((state) => state.boxRef);
 
-  const resumeAudio = () => {
-    document.removeEventListener('click', resumeAudio);
-    sound.current.context.resume();
-    console.log('AudioContext resumed');
-  };
-  if (sound.current && sound.current.context.state === 'suspended') {
-    document.addEventListener('click', resumeAudio);
-  }
+  useEffect(() => {
+    const resumeAudio = () => {
+      document.removeEventListener('click', resumeAudio);
+      sound.current.play();
+      sound.current.context.state == 'running'
+        ? console.log('AudioContext start!')
+        : console.log(`AudioContext failed, wonder why. ${sound.current}`);
+    };
+    if (sound.current.context.state === 'suspended') {
+      document.addEventListener('click', resumeAudio);
+    }
+  }, [sound]);
 
   useEffect(() => {
     sound.current.setBuffer(buffer);
@@ -30,12 +33,7 @@ export default function PositionalAudio({ url }) {
     sound.current.setMaxDistance(100);
     sound.current.setLoop(true);
     sound.current.setVolume(1);
-    sound.current.play();
-    if (boxRef) {
-      console.log('hello i exist!');
-      console.log(boxRef);
-      boxRef.current.add(listener);
-    }
-  }, [buffer, camera, listener, boxRef]);
+    playerRef && playerRef.current.add(listener);
+  }, [buffer, listener, playerRef]);
   return <positionalAudio ref={sound} args={[listener]} />;
 }

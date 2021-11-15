@@ -5,27 +5,7 @@ import { useThree, useFrame, useLoader } from '@react-three/fiber';
 import { Vector3 } from 'three';
 import { useKeysToMove } from './hooks/userKeyboard';
 import useStore from '@/components/helpers/store';
-import * as THREE from 'three';
-
-function Sound({ url }) {
-  const sound = useRef();
-  const [listener] = useState(() => new THREE.AudioListener());
-  const buffer = useLoader(THREE.AudioLoader, url);
-  const { camera } = useThree();
-
-  useEffect(() => {
-    sound.current.setBuffer(buffer);
-    sound.current.setRefDistance(1);
-    sound.current.setDistanceModel('linear');
-    sound.current.setRolloffFactor(2);
-    sound.current.setMaxDistance(100);
-    sound.current.setLoop(true);
-    sound.current.setVolume(1);
-    sound.current.play();
-    camera.add(listener);
-  }, [buffer, camera, listener]);
-  return <positionalAudio ref={sound} args={[listener]} />;
-}
+import { PositionalAudio } from '@react-three/drei';
 
 const speed: number = 7;
 const playerVelocity = new Vector3();
@@ -51,15 +31,15 @@ export default function PlayerBox(props: boxProps) {
     useStore.setState({ boxRef: ref, boxAPI: api });
   }, [ref, api]);
 
-  camera.children.forEach((child) => {
-    if (
-      child instanceof THREE.AudioListener &&
-      child.context.state !== 'running'
-    ) {
-      child.context.resume();
-      console.log('Resumed audio, should optimize this later I think');
-    }
-  });
+  const audioRef = useRef();
+  const resumeAudio = () => {
+    document.removeEventListener('click', resumeAudio);
+    audioRef.current.context.resume();
+    console.log('AudioContext resumed');
+  };
+  if (audioRef.current && audioRef.current.context.state === 'suspended') {
+    document.addEventListener('click', resumeAudio);
+  }
 
   useFrame(() => {
     frontBackVector.set(0, 0, (keyBack ? 1 : 0) - (keyForward ? 1 : 0));
@@ -80,9 +60,19 @@ export default function PlayerBox(props: boxProps) {
 
   return (
     <mesh {...props} ref={ref} position={[30, 0, 0]}>
-      <Sound url={'audio/Developers.mp3'} />
       <boxGeometry args={[1.5, 1.5, 1.5]} />
       <meshStandardMaterial color={'gold'} />
+      <PositionalAudio
+        url="/audio/developers.mp3"
+        loop
+        autoplay
+        distance={10}
+        setMaxDistance={100}
+        setVolume={0.5}
+        setRolloffFactor={2}
+        setDistanceModel="linear"
+        ref={audioRef}
+      />
     </mesh>
   );
 }

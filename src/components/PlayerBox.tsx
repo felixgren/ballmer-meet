@@ -5,7 +5,41 @@ import { useThree, useFrame, useLoader } from '@react-three/fiber';
 import { Vector3 } from 'three';
 import { useKeysToMove } from './hooks/userKeyboard';
 import useStore from '@/components/helpers/store';
-import { PositionalAudio } from '@react-three/drei';
+import * as THREE from 'three';
+
+function PositionalAudio({ url }) {
+  const sound = useRef();
+  const [listener] = useState(() => new THREE.AudioListener());
+  const buffer = useLoader(THREE.AudioLoader, url);
+  const { camera } = useThree();
+  const boxRef = useStore((state) => state.boxRef);
+
+  const resumeAudio = () => {
+    document.removeEventListener('click', resumeAudio);
+    sound.current.context.resume();
+    console.log('AudioContext resumed');
+  };
+  if (sound.current && sound.current.context.state === 'suspended') {
+    document.addEventListener('click', resumeAudio);
+  }
+
+  useEffect(() => {
+    sound.current.setBuffer(buffer);
+    sound.current.setRefDistance(1);
+    sound.current.setDistanceModel('linear');
+    sound.current.setRolloffFactor(2);
+    sound.current.setMaxDistance(100);
+    sound.current.setLoop(true);
+    sound.current.setVolume(1);
+    sound.current.play();
+    if (boxRef) {
+      console.log('hello i exist!');
+      console.log(boxRef);
+      boxRef.current.add(listener);
+    }
+  }, [buffer, camera, listener, boxRef]);
+  return <positionalAudio ref={sound} args={[listener]} />;
+}
 
 const speed: number = 7;
 const playerVelocity = new Vector3();
@@ -31,15 +65,18 @@ export default function PlayerBox(props: boxProps) {
     useStore.setState({ boxRef: ref, boxAPI: api });
   }, [ref, api]);
 
-  const audioRef = useRef();
-  const resumeAudio = () => {
-    document.removeEventListener('click', resumeAudio);
-    audioRef.current.context.resume();
-    console.log('AudioContext resumed');
-  };
-  if (audioRef.current && audioRef.current.context.state === 'suspended') {
-    document.addEventListener('click', resumeAudio);
-  }
+  // const audioRef = useRef();
+  // useEffect(() => {
+  //   const resumeAudio = () => {
+  //     document.removeEventListener('click', resumeAudio);
+  //     audioRef.current.context.resume();
+  //     console.log('AudioContext resumed');
+  //   };
+  //   if (audioRef.current && audioRef.current.context.state === 'suspended') {
+  //     console.log('AudioContext loloo');
+  //     document.addEventListener('click', resumeAudio);
+  //   }
+  // }, [audioRef]);
 
   useFrame(() => {
     frontBackVector.set(0, 0, (keyBack ? 1 : 0) - (keyForward ? 1 : 0));
@@ -60,19 +97,9 @@ export default function PlayerBox(props: boxProps) {
 
   return (
     <mesh {...props} ref={ref} position={[30, 0, 0]}>
+      <PositionalAudio url={'audio/developers.mp3'} />
       <boxGeometry args={[1.5, 1.5, 1.5]} />
       <meshStandardMaterial color={'gold'} />
-      <PositionalAudio
-        url="/audio/developers.mp3"
-        loop
-        autoplay
-        distance={10}
-        setMaxDistance={100}
-        setVolume={0.5}
-        setRolloffFactor={2}
-        setDistanceModel="linear"
-        ref={audioRef}
-      />
     </mesh>
   );
 }

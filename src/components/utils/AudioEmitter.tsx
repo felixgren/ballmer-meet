@@ -4,13 +4,11 @@
 import { useEffect, useRef, useState } from 'react';
 import { AudioLoader, AudioListener } from 'three';
 import { useLoader } from '@react-three/fiber';
-import useStore from '@/components/helpers/store';
 
 export default function AudioEmitter({ url }) {
   const sound = useRef();
   const [listener] = useState(() => new AudioListener());
   const buffer = useLoader(AudioLoader, url);
-  const playerRef = useStore((state) => state.boxRef);
 
   useEffect(() => {
     const resumeAudio = () => {
@@ -22,6 +20,13 @@ export default function AudioEmitter({ url }) {
     };
     if (sound.current.context.state === 'suspended') {
       document.addEventListener('click', resumeAudio);
+    } else if (sound.current.context.state === 'running') {
+      console.log('AudioContext running. Starting sound.');
+      sound.current.play();
+    } else {
+      console.log(
+        `AudioContext unhandled state: ${sound.current.context.state}`
+      );
     }
   }, [sound]);
 
@@ -32,8 +37,7 @@ export default function AudioEmitter({ url }) {
     sound.current.setRolloffFactor(3);
     sound.current.setMaxDistance(100);
     sound.current.setLoop(true);
-    sound.current.setVolume(1);
-    playerRef && playerRef.current.add(listener);
-  }, [buffer, listener, playerRef]);
+    sound.current.setVolume(0.5);
+  }, [buffer, listener]);
   return <positionalAudio ref={sound} args={[listener]} />;
 }

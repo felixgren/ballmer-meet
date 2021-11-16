@@ -5,10 +5,12 @@ import Map from '@/components/Map';
 import PlayerBox from '@/components/PlayerBox';
 import TriggerZones from '@/components/TriggerZones';
 import styles from '../styles/index.module.css';
+import SplashScreen from '@/components/splashscreen/SplashScreen';
 
 const Game: React.FC = () => {
   return (
     <div className={styles.container}>
+      <SplashScreen />
       <Canvas camera={{ position: [0, 60, 120], fov: 50 }}>
         <OrbitControls
           maxPolarAngle={1.1}

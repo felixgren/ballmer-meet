@@ -1,11 +1,13 @@
+//@ts-nocheck
 import { useBox } from '@react-three/cannon';
-import { useEffect, useRef } from 'react';
-import { useThree, useFrame } from '@react-three/fiber';
+import { useEffect, useRef, useState } from 'react';
+import { useThree, useFrame, useLoader } from '@react-three/fiber';
 import { Vector3 } from 'three';
 import { useKeysToMove } from './hooks/userKeyboard';
+import AudioListener from '@/components/utils/AudioListener';
 import useStore from '@/components/helpers/store';
 
-const speed: number = 7;
+const speed: number = 20;
 const playerVelocity = new Vector3();
 const frontBackVector = new Vector3(0, 0, 1);
 const sidesVector = new Vector3(1, 0, 0);
@@ -24,7 +26,6 @@ export default function PlayerBox(props: boxProps) {
   useEffect(() => {
     api.velocity.subscribe((v) => (velocity.current = v));
   }, [api.velocity]);
-
   useEffect(() => {
     console.log('Set boxRef BoxApi states');
     useStore.setState({ boxRef: ref, boxAPI: api });
@@ -48,7 +49,8 @@ export default function PlayerBox(props: boxProps) {
   });
 
   return (
-    <mesh {...props} ref={ref} position={[30, 0, 0]}>
+    <mesh {...props} ref={ref} name={'Player'}>
+      <AudioListener />
       <boxGeometry args={[1.5, 1.5, 1.5]} />
       <meshStandardMaterial color={'gold'} />
     </mesh>

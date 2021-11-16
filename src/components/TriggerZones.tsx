@@ -1,5 +1,4 @@
 import { useCylinder, CylinderProps } from '@react-three/cannon';
-import { useState, useEffect } from 'react';
 import { Color } from 'three';
 
 interface ZoneProps extends CylinderProps {
@@ -10,22 +9,15 @@ interface ZoneProps extends CylinderProps {
 const startColor = new Color();
 
 export default function Zone() {
-  // function setZone(e: any) {
-  //   e.type == 'collideBegin'
-  //     ? console.log(e)
-  //     : e.type == 'collideEnd'
-  //     ? console.log('leave zone')
-  //     : console.log(`Error! unexpected event: ${e.type}`);
-  // }
-
   function setZone(e: any) {
+    const meshName = e.body.name !== '' ? e.body.name : 'untitled mesh';
     if (e.type == 'collideBegin') {
-      console.log(`You enter ${e.target.name}`);
+      console.log(`${meshName} enters ${e.target.name}`);
       startColor.copy(e.body.material.color);
       e.body.material.color.copy(e.target.material.color);
     }
     if (e.type == 'collideEnd') {
-      console.log(`You leave ${e.target.name}`);
+      console.log(`${meshName} leaves ${e.target.name}`);
       e.body.material.color.copy(startColor);
     }
   }

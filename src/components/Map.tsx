@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { usePlane, useBox, PlaneProps, BoxProps } from '@react-three/cannon';
 import { useFrame } from '@react-three/fiber';
 import useStore from '@/components/helpers/store';
@@ -29,22 +30,31 @@ function FallPlane({ onCollide }: PlaneProps) {
   return (
     <mesh ref={ref}>
       <planeBufferGeometry args={[200, 200]} />
-      <meshPhongMaterial attach="material" color="red" />
+      <meshPhongMaterial attach="material" color="red" visible={false} />
     </mesh>
   );
 }
 
 export default function Map() {
   const boxAPI = useStore((state) => state.boxAPI);
-  let respawnPlayer = useRef(false);
+  const boxRef = useStore((state) => state.boxRef);
+  let respawnPlayer: any = useRef();
 
   useFrame(() => {
-    if (boxAPI && respawnPlayer.current) {
-      console.log('You fell off, respawning player');
-      // Generates random numbers between -10 and 10
-      const x = Math.floor(Math.random() * 20) - 10;
-      const z = Math.floor(Math.random() * 20) - 10;
-      boxAPI.position.set(x, 65, z);
+    if (boxAPI && boxRef && respawnPlayer.current) {
+      if (respawnPlayer.current.body.uuid === boxRef.current.uuid) {
+        console.log('You fell off, respawning player');
+        // Generates random numbers between -10 and 10
+        const x = Math.floor(Math.random() * 20) - 10;
+        const z = Math.floor(Math.random() * 20) - 10;
+        boxAPI.position.set(x, 65, z);
+      } else {
+        console.log(
+          `${respawnPlayer.current.body.uuid} collided with the ground`
+        );
+        respawnPlayer.current.body.visible === true &&
+          (respawnPlayer.current.body.visible = false);
+      }
       respawnPlayer.current = false;
     }
   });
@@ -57,8 +67,8 @@ export default function Map() {
         rotation={[-Math.PI / 2, 0, 0]}
       />
       <FallPlane
-        onCollide={() => {
-          respawnPlayer.current = true;
+        onCollide={(e) => {
+          respawnPlayer.current = e;
         }}
       />
     </group>

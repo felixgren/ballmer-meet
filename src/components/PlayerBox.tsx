@@ -7,7 +7,7 @@ import { useKeysToMove } from './hooks/userKeyboard';
 import AudioListener from '@/components/utils/AudioListener';
 import useStore from '@/components/helpers/store';
 
-const speed: number = 50;
+const speed: number = 20;
 const playerVelocity = new Vector3();
 const frontBackVector = new Vector3(0, 0, 1);
 const sidesVector = new Vector3(1, 0, 0);
@@ -49,7 +49,7 @@ export default function PlayerBox(props: boxProps) {
   });
 
   return (
-    <mesh {...props} ref={ref} position={[30, 0, 0]}>
+    <mesh {...props} ref={ref} name={'Player'}>
       <AudioListener />
       <boxGeometry args={[1.5, 1.5, 1.5]} />
       <meshStandardMaterial color={'gold'} />

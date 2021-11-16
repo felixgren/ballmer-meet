@@ -33,8 +33,8 @@ export default function AudioEmitter({ url }) {
   useEffect(() => {
     sound.current.setBuffer(buffer);
     sound.current.setRefDistance(10);
-    sound.current.setDistanceModel('inverse');
-    sound.current.setRolloffFactor(3);
+    sound.current.setDistanceModel('exponential');
+    sound.current.setRolloffFactor(6);
     sound.current.setMaxDistance(100);
     sound.current.setLoop(true);
     sound.current.setVolume(0.5);

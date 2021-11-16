@@ -6,6 +6,7 @@ import PlayerBox from '@/components/PlayerBox';
 import JukeBoxFactory from '@/components/JukeBoxFactory';
 import TriggerZones from '@/components/TriggerZones';
 import styles from '../styles/index.module.css';
+import InitSocket from '@/components/InitSocket';
 
 const Game: React.FC = () => {
   return (
@@ -32,6 +33,7 @@ const Game: React.FC = () => {
           <JukeBoxFactory />
           <TriggerZones />
         </Physics>
+        <InitSocket />
       </Canvas>
     </div>
   );

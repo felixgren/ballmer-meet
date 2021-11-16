@@ -40,4 +40,4 @@ function deleteRemotePlayer(id) {}
 
 function updateRemotePlayers(remotePlayers) {}
 
-function uploadLocalPlayer() {}
+function uploadMovementData() {}

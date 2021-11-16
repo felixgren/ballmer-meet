@@ -1,12 +1,12 @@
 //@ts-nocheck
-// Custom Positional audio component
+// Custom PositionalAudio
 
 import { useEffect, useRef, useState } from 'react';
 import { AudioLoader, AudioListener } from 'three';
 import { useLoader } from '@react-three/fiber';
 import useStore from '@/components/helpers/store';
 
-export default function Positional2({ url }) {
+export default function AudioEmitter({ url }) {
   const sound = useRef();
   const [listener] = useState(() => new AudioListener());
   const buffer = useLoader(AudioLoader, url);
@@ -28,8 +28,8 @@ export default function Positional2({ url }) {
   useEffect(() => {
     sound.current.setBuffer(buffer);
     sound.current.setRefDistance(10);
-    // sound.current.setDistanceModel('linear');
-    sound.current.setRolloffFactor(2);
+    sound.current.setDistanceModel('inverse');
+    sound.current.setRolloffFactor(3);
     sound.current.setMaxDistance(100);
     sound.current.setLoop(true);
     sound.current.setVolume(1);

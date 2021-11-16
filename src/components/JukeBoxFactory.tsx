@@ -1,6 +1,6 @@
 //@ts-nocheck
 import { useBox } from '@react-three/cannon';
-import Positional2 from '@/components/utils/Positional2';
+import AudioEmitter from '@/components/utils/AudioEmitter';
 type boxProps = JSX.IntrinsicElements['mesh'];
 
 export default function JukeBoxFactory(props: boxProps) {
@@ -13,7 +13,7 @@ export default function JukeBoxFactory(props: boxProps) {
     }));
     return (
       <mesh {...{ position, ref }} name={name}>
-        <Positional2 url={tune} />
+        <AudioEmitter url={tune} />
         <boxGeometry args={args} />
         <meshStandardMaterial color={color} />
       </mesh>

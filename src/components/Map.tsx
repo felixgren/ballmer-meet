@@ -1,7 +1,9 @@
+// @ts-nocheck
 import { usePlane, useBox, PlaneProps, BoxProps } from '@react-three/cannon';
-import { useFrame } from '@react-three/fiber';
+import { dispose, useFrame } from '@react-three/fiber';
 import useStore from '@/components/helpers/store';
 import { useRef } from 'react';
+import { useThree } from '@react-three/fiber';
 
 function CubeWorld({ args, position, rotation }: BoxProps) {
   const [ref] = useBox(() => ({ type: 'Static', args, position }));
@@ -34,17 +36,64 @@ function FallPlane({ onCollide }: PlaneProps) {
   );
 }
 
+function RemoveMesh(object?) {
+  if (object) {
+    console.log('removing');
+    object.geometry.dispose();
+    object.material.dispose();
+    object.parent.remove(object);
+
+    // const object = scene.getObjectByProperty(
+    //   'uuid',
+    //   respawnPlayer.current.body.uuid
+    // );
+
+    // console.log(
+    //   `${meshName} fell off, and was deleted. Ever destined to be seen no more`
+    // );
+
+    // mesh.geometry.dispose();
+    // mesh.material.dispose();
+
+    // object.geometry.dispose();
+    // object.material.dispose();
+    // dispose(object);
+    // scene.remove(object);
+    // object.removeFromParent();
+
+    // const mesh = respawnPlayer.current.body;
+    // const meshName =
+    //   respawnPlayer.current.body.name !== ''
+    //     ? respawnPlayer.current.body.name
+    //     : 'untitled mesh';
+
+    // const object = scene.getObjectByProperty(
+    //   'uuid',
+    //   respawnPlayer.current.body.uuid
+  }
+}
+
 export default function Map() {
+  const { scene, gl } = useThree();
   const boxAPI = useStore((state) => state.boxAPI);
-  let respawnPlayer = useRef(false);
+  const boxRef = useStore((state) => state.boxRef);
+  let respawnPlayer: any = useRef();
 
   useFrame(() => {
-    if (boxAPI && respawnPlayer.current) {
-      console.log('You fell off, respawning player');
-      // Generates random numbers between -10 and 10
-      const x = Math.floor(Math.random() * 20) - 10;
-      const z = Math.floor(Math.random() * 20) - 10;
-      boxAPI.position.set(x, 65, z);
+    if (boxAPI && boxRef && respawnPlayer.current) {
+      console.log(respawnPlayer.current.body.uuid);
+      console.log(boxRef.current.uuid);
+      if (respawnPlayer.current.body.uuid === boxRef.current.uuid) {
+        console.log('You fell off, respawning player');
+        // Generates random numbers between -10 and 10
+        const x = Math.floor(Math.random() * 20) - 10;
+        const z = Math.floor(Math.random() * 20) - 10;
+        boxAPI.position.set(x, 65, z);
+      } else {
+        console.log(respawnPlayer.current.body);
+        respawnPlayer.current.body && RemoveMesh(respawnPlayer.current.body);
+      }
+
       respawnPlayer.current = false;
     }
   });
@@ -57,8 +106,9 @@ export default function Map() {
         rotation={[-Math.PI / 2, 0, 0]}
       />
       <FallPlane
-        onCollide={() => {
-          respawnPlayer.current = true;
+        onCollide={(e) => {
+          respawnPlayer.current = e;
+          console.log(e);
         }}
       />
     </group>

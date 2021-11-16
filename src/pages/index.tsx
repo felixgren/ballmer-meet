@@ -3,6 +3,7 @@ import { Sky, OrbitControls } from '@react-three/drei';
 import { Physics, Debug } from '@react-three/cannon';
 import Map from '@/components/Map';
 import PlayerBox from '@/components/PlayerBox';
+import JukeBoxFactory from '@/components/JukeBoxFactory';
 import TriggerZones from '@/components/TriggerZones';
 import styles from '../styles/index.module.css';
 
@@ -28,6 +29,7 @@ const Game: React.FC = () => {
           <Debug color="black">
             <PlayerBox />
           </Debug>
+          <JukeBoxFactory />
           <TriggerZones />
         </Physics>
       </Canvas>

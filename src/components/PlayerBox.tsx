@@ -4,10 +4,10 @@ import { useEffect, useRef, useState } from 'react';
 import { useThree, useFrame, useLoader } from '@react-three/fiber';
 import { Vector3 } from 'three';
 import { useKeysToMove } from './hooks/userKeyboard';
-import PositionalAudio from '@/components/utils/PositionalAudio';
+import PositionalListener from '@/components/utils/Listener';
 import useStore from '@/components/helpers/store';
 
-const speed: number = 7;
+const speed: number = 50;
 const playerVelocity = new Vector3();
 const frontBackVector = new Vector3(0, 0, 1);
 const sidesVector = new Vector3(1, 0, 0);
@@ -50,7 +50,9 @@ export default function PlayerBox(props: boxProps) {
 
   return (
     <mesh {...props} ref={ref} position={[30, 0, 0]}>
-      <PositionalAudio url={'audio/developers.mp3'} />
+      {/* <PositionalAudio url={'audio/developers.mp3'} /> */}
+      {/* <PositionalListener url={'audio/developers.mp3'} /> */}
+      <PositionalListener />
       <boxGeometry args={[1.5, 1.5, 1.5]} />
       <meshStandardMaterial color={'gold'} />
     </mesh>

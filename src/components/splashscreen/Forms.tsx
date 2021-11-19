@@ -1,11 +1,22 @@
-import React, { useRef, useState } from 'react';
+//@ts-nocheck
+import React, { useRef, useState, useEffect } from 'react';
 import styles from '../../styles/Forms.module.css';
 
-const handleClick = () => {};
-
 const Forms = () => {
+  const sectionRef = useRef(null);
+  useEffect(() => {}, [sectionRef]);
+
+  const handleClick = (index) => {
+    if (sectionRef.current) {
+      Object.values(sectionRef.current.children).map((item) => {
+        item.style.display = 'none';
+      });
+
+      sectionRef.current.children[index].style.display = 'flex';
+    }
+  };
   return (
-    <group>
+    <group ref={sectionRef}>
       <div className={styles.selectCreateOrJoin}>
         <h1 className={styles.welcome}>Welcome to [Cool App]</h1>
         <h2 className={styles.instructions}>
@@ -15,11 +26,13 @@ const Forms = () => {
           className={styles.submitButtonCreateRoom}
           type="submit"
           value="Create Call"
+          onClick={(e) => handleClick(1)}
         />
         <input
           className={styles.submitButtonCreateRoom}
           type="submit"
           value="Join Call"
+          onClick={(e) => handleClick(3)}
         />
       </div>
 
@@ -58,12 +71,14 @@ const Forms = () => {
           className={styles.submitButtonCreateRoom}
           type="submit"
           value="Create call"
+          onClick={(e) => handleClick(2)}
         />
       </form>
 
       <div className={styles.displayInviteLink}>
         <h1 className={styles.generatedLink}>Here is your link, bitch</h1>
         <h2 className={styles.printLink}>THIS IS THE URL</h2>
+        {/* Här ska man skickas direkt till spelet */}
         <input
           className={styles.submitButtonCreateRoom}
           type="submit"
@@ -85,6 +100,7 @@ const Forms = () => {
             name="name"
           />
         </label>
+        {/* Här ska man skickas direkt till spelet */}
         <input
           className={styles.submitButtonInvited}
           type="submit"

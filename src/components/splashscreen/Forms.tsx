@@ -1,5 +1,5 @@
 //@ts-nocheck
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useEffect } from 'react';
 import styles from '../../styles/Forms.module.css';
 
 const Forms = () => {
@@ -11,10 +11,10 @@ const Forms = () => {
       Object.values(sectionRef.current.children).map((item) => {
         item.style.display = 'none';
       });
-
       sectionRef.current.children[index].style.display = 'flex';
     }
   };
+
   return (
     <group ref={sectionRef}>
       <div className={styles.selectCreateOrJoin}>
@@ -32,7 +32,7 @@ const Forms = () => {
           className={styles.submitButtonCreateRoom}
           type="submit"
           value="Join Call"
-          onClick={(e) => handleClick(3)}
+          onClick={(e) => handleClick(4)}
         />
       </div>
 
@@ -54,7 +54,7 @@ const Forms = () => {
         </label>
 
         <label>
-          <h3 className={styles.formLabel}> Number of rooms</h3>
+          <h3 className={styles.formLabel}> Number of channels</h3>
           <select
             required
             className={styles.selectDropdown}
@@ -82,7 +82,7 @@ const Forms = () => {
         <input
           className={styles.submitButtonCreateRoom}
           type="submit"
-          value="Join Call"
+          value="Enter Call"
         />
       </div>
 
@@ -105,6 +105,28 @@ const Forms = () => {
           className={styles.submitButtonInvited}
           type="submit"
           value="Join call"
+        />
+      </form>
+
+      <form className={styles.formContainerEnterUrl}>
+        <h2 className={styles.instructions}>
+          Enter an URL to join an existing call
+        </h2>
+        <label>
+          <input
+            className={styles.inputField}
+            placeholder="Enter URL"
+            required
+            type="text"
+            name="name"
+          />
+        </label>
+        {/* Här ska man skickas direkt till spelet */}
+        <input
+          className={styles.submitButtonInvited}
+          type="submit"
+          value="Join call"
+          onClick={(e) => handleClick(3)}
         />
       </form>
     </group>

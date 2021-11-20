@@ -5,7 +5,8 @@
   align-items: center;
 }
 .selectCreateOrJoin,
-.displayInviteLink {
+.displayInviteLink,
+.formContainerEnterUrl {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -15,15 +16,16 @@
 
 .formContainerInvited,
 .formContainerCreateRoom,
-.displayInviteLink {
+.displayInviteLink,
+.formContainerEnterUrl {
   display: none;
 }
 
 .submitButtonInvited,
 .submitButtonCreateRoom {
-  padding: 10px;
+  padding: 15px;
   color: rgb(255, 255, 255);
-  background-color: hotpink;
+  background-color: #947528;
   border-radius: 8px;
   width: 120px;
   font-weight: bold;
@@ -76,14 +78,14 @@
   color: white;
 
   /* Prefix required. Even Firefox only supports the -webkit- prefix */
-  -webkit-text-stroke-width: 1px;
-  -webkit-text-stroke-color: hotpink;
+  /* -webkit-text-stroke-width: 0.6px;
+  -webkit-text-stroke-color: rgb(235, 15, 15); */
 }
 .instructions {
   color: white;
   margin-bottom: 75px;
-  -webkit-text-stroke-width: 0.4px;
-  -webkit-text-stroke-color: hotpink;
+  /* -webkit-text-stroke-width: 0.4px;
+  -webkit-text-stroke-color: rgb(235, 15, 15); */
 }
 
 .formLabel {

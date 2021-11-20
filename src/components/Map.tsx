@@ -14,7 +14,7 @@ function CubeWorld({ args, position, rotation }: BoxProps) {
       </mesh>
       <mesh {...{ rotation }} position={[0, 0.05, 0]}>
         <planeGeometry attach="geometry" args={[100, 100]} />
-        <meshPhongMaterial attach="material" color="hotpink" />
+        <meshPhongMaterial attach="material" color="#403e4c" />
       </mesh>
     </group>
   );

@@ -1,6 +1,6 @@
 .webcamWrapper {
-  background-color: hotpink;
+  background-color: #36393f;
   position: fixed;
-  bottom: 0;
+  top: 90vh;
   right: 40%;
 }

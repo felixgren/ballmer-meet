@@ -23,7 +23,16 @@ const Game: React.FC = () => {
           rotateSpeed={0.3}
           enablePan={false}
         />
-        <Sky sunPosition={[160, 10, -200]} distance={700} />
+        <Sky
+          sunPosition={[130, 20, -175]}
+          distance={700}
+          inclination={0.245}
+          turbidity={10}
+          rayleigh={0.642}
+          mieCoefficient={0.005}
+          mieDirectionalG={0.9}
+          azimuth={0.35}
+        />
         <ambientLight intensity={0.5} position={[160, 10, -200]} />
 
         <Physics gravity={[0, -9.8, 0]} iterations={20} tolerance={0}>

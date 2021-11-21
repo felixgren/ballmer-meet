@@ -1,6 +1,7 @@
 //@ts-nocheck
 import React, { useRef, useEffect, useState } from 'react';
 import styles from '../../styles/Forms.module.css';
+import Link from 'next/link';
 
 const Forms = () => {
   const sectionRef = useRef(null);
@@ -79,11 +80,13 @@ const Forms = () => {
         <h1 className={styles.generatedLink}>Here is your link, bitch</h1>
         <h2 className={styles.printLink}>THIS IS THE URL</h2>
         {/* Här ska man skickas direkt till spelet */}
-        <input
-          className={styles.submitButtonCreateRoom}
-          type="submit"
-          value="Enter Call"
-        />
+        <Link href="/" passHref={true}>
+          <input
+            className={styles.submitButtonCreateRoom}
+            type="submit"
+            value="Enter Call"
+          />
+        </Link>
       </div>
 
       <form className={styles.formContainerInvited}>
@@ -101,11 +104,13 @@ const Forms = () => {
           />
         </label>
         {/* Här ska man skickas direkt till spelet */}
-        <input
-          className={styles.submitButtonInvited}
-          type="submit"
-          value="Join call"
-        />
+        <Link href="/" passHref={true}>
+          <input
+            className={styles.submitButtonInvited}
+            type="submit"
+            value="Join call"
+          />
+        </Link>
       </form>
 
       <form className={styles.formContainerEnterUrl}>
@@ -121,7 +126,7 @@ const Forms = () => {
             name="name"
           />
         </label>
-        {/* Här ska man skickas direkt till spelet */}
+
         <input
           className={styles.submitButtonInvited}
           type="submit"

@@ -8,11 +8,9 @@ export class GameServer {
   private httpServer: HTTPServer;
   private app: Application;
   private io: SocketIOServer;
-
   private readonly dynamicPort = process.env.PORT || 5000;
 
   // Stores players
-  //   private players: { [id: string]: Player } = {};
   private players: { [id: string]: any } = {};
 
   constructor() {
@@ -26,27 +24,9 @@ export class GameServer {
       cors: {
         origin: '*',
         methods: 'GET, POST',
-        // methods: 'GET, POST, PUT, DELETE, OPTIONS',
-        // allowedHeaders: 'Origin, X-Requested-With, Content-Type, Accept',
-        // credentials: true,
       },
     });
-
-    this.configApp();
-    this.setupRoute();
     this.handleSocketEvents();
-  }
-
-  // Tell express which static file to serve
-  private configApp(): void {
-    const path = require('path');
-    this.app.use(express.static(path.join(__dirname, '../public')));
-  }
-
-  private setupRoute(): void {
-    this.app.get('/', (req, res) => {
-      res.sendFile('index-game.html');
-    });
   }
 
   private handleSocketEvents(): void {
@@ -87,10 +67,6 @@ export class GameServer {
         this.io.emit('chat message', username, message);
       });
 
-      socket.on('kill message', (shooter, killed) => {
-        this.io.emit('kill message', shooter, killed);
-      });
-
       // Data every client uploads
       socket.on('updateClientPos', (position, direction) => {
         if (this.players[socket.id]) {
@@ -98,22 +74,8 @@ export class GameServer {
           this.players[socket.id].direction = direction;
         }
       });
-
-      socket.on('triggerRemoteRocket', () => {
-        socket.broadcast.emit(
-          'shootSyncRocket',
-          this.players[socket.id],
-          socket.id
-        );
-      });
     });
   }
-
-  //   public listen(): void {
-  //     this.httpServer.listen(this.port, () => {
-  //       console.log(`Listening on port ${this.port}`);
-  //     });
-  //   }
 
   public listen(callback: (port: any) => void): void {
     this.httpServer.listen(this.dynamicPort, () => {

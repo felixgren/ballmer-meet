@@ -1,4 +1,5 @@
-import { useState } from 'react';
+//@ts-nocheck
+import { useState, useEffect, useRef } from 'react';
 import styles from '../../styles/ControlButtons.module.css';
 import Image from 'next/image';
 import MicrophoneImage from '@/img/microphone.png';
@@ -7,11 +8,12 @@ import MuteMicrophoneImage from '@/img/mute-microphone.png';
 import MuteCamImage from '@/img/mute-cam.png';
 
 const ControlButtons = () => {
-  const [click, setClick] = useState();
-  const toggleButton = () => {};
+  const sectionRef = useRef(null);
+  useEffect(() => {}, [sectionRef]);
 
+  console.dir(sectionRef);
   return (
-    <div>
+    <div ref={sectionRef}>
       <button className={styles.toggleWebcam}>
         <Image
           src={CamImage}

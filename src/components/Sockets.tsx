@@ -7,18 +7,21 @@ export default function InitSocket(props: boxProps) {
   const socket = io('http://localhost:5000');
 
   let player = {};
-  let players = {};
+  let remotePlayers = {};
 
   socket.on('connect', () => {
-    socket.on('initNewPlayer', (data, playerCount, remotePlayers) => {
+    socket.on('initNewPlayer', (data, playerCount, playersObject) => {
       player.id = data.id;
       console.log(`I am ${socket.id}, the ${playerCount}th player.`);
-      players = remotePlayers;
+      remotePlayers = playersObject;
 
-      // Check all that isn't local player
+      // Check all connected remote players and add them to clients world.
       for (let i = 0; i < playerCount; i++) {
         if (remotePlayers[i] !== player.id) {
-          console.log(`${remotePlayers[i]} needs to be added to the world...`);
+          console.log(
+            `${remotePlayers[i]} was already in the world, and needs to be added to yours... `
+          );
+          addRemotePlayer(remotePlayers[i]);
         }
       }
     });
@@ -26,11 +29,26 @@ export default function InitSocket(props: boxProps) {
 
   socket.on('player connect', (id, playerCount) => {
     console.log(`${id} has connected, there are now ${playerCount} players!`);
-    console.log(`I am ${player.id}, and the new player is ${id}`);
+    addRemotePlayer(id);
   });
 
   socket.on('player disconnect', (id, playerCount) => {
     console.log(`${id} has left us... there are now ${playerCount} players!`);
+    removeRemotePlayer(id);
   });
+
+  function addRemotePlayer(id) {
+    remotePlayers[id] = {};
+    remotePlayers[id].test = 'test';
+    console.log(`${id} has been added to remotePlayers object!`);
+    console.log(remotePlayers);
+  }
+
+  function removeRemotePlayer(id) {
+    delete remotePlayers[id];
+    console.log(`${id} has been removed from remotePlayers object!`);
+    console.log(remotePlayers);
+  }
+
   return <></>;
 }

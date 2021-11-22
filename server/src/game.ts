@@ -39,15 +39,19 @@ export class GameServer {
         direction: [0, 0, 0],
       };
 
-      // We give all clients notice of new player and their ID..
-      this.io.emit('player connect', socket.id, this.io.engine.clientsCount);
-
-      // We give client their ID, playerCount and playerIDs
+      // We give newly connected player their ID, playerCount and Players object
       socket.emit(
-        'initPlayer',
+        'initNewPlayer',
         { id: socket.id },
         this.io.engine.clientsCount,
         Object.keys(this.players)
+      );
+
+      // We give all clients notice of new player and their ID..
+      socket.broadcast.emit(
+        'player connect',
+        socket.id,
+        this.io.engine.clientsCount
       );
 
       // We give clients notice of disconnection and the their ID

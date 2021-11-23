@@ -44,10 +44,10 @@ export class GameServer {
         'initNewPlayer',
         { id: socket.id },
         this.io.engine.clientsCount,
-        Object.keys(this.players),
-        this.players,
-        console.log(Object.keys(this.players)),
-        console.log(this.players)
+        Object.keys(this.players)
+        // this.players,
+        // console.log(Object.keys(this.players)),
+        // console.log(this.players)
       );
 
       // We give all clients notice of new player and their ID..

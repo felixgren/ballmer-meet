@@ -16,36 +16,23 @@ const ControlButtons = () => {
         className={styles.toggleWebcam}
         onClick={() => setCamBtnToggled(!camBtnToggled)}
       >
-        {camBtnToggled ? (
-          <Image
-            src={NoCamIcon}
-            width="20px"
-            height="20px"
-            alt="cam off icon"
-          />
-        ) : (
-          <Image src={CamIcon} width="20px" height="20px" alt="cam icon" />
-        )}
+        <Image
+          src={camBtnToggled ? NoCamIcon : CamIcon}
+          width="20px"
+          height="20px"
+          alt="webcam icon"
+        />
       </button>
       <button
         className={styles.toggleWebcam}
         onClick={() => setMicBtnToggled(!micBtnToggled)}
       >
-        {micBtnToggled ? (
-          <Image
-            src={NoMicrophoneIcon}
-            width="20px"
-            height="20px"
-            alt="microphone off icon"
-          />
-        ) : (
-          <Image
-            src={MicrophoneIcon}
-            width="20px"
-            height="20px"
-            alt="microphone icon"
-          />
-        )}
+        <Image
+          src={micBtnToggled ? NoMicrophoneIcon : MicrophoneIcon}
+          width="20px"
+          height="20px"
+          alt="webcam icon"
+        />
       </button>
     </div>
   );

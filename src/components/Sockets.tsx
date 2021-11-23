@@ -2,38 +2,39 @@
 //@ts-nocheck
 import io from 'socket.io-client';
 import RemotePlayer from '@/components/RemotePlayer';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+const socket = io('http://localhost:5000'); // haha you can't be in component with updating state...
 
 export default function InitSocket(props: boxProps) {
   console.log('init sockets');
-  const socket = io('http://localhost:5000');
-
   const player = {};
-  const remotePlayers = [];
-  // let playerMeshes;
+  // let remotePlayers = [];
+  const [remotePlayers, setRemotePlayer] = useState([]);
 
   socket.on('connect', () => {
-    socket.on('initNewPlayer', (localPlayerID, playerCount, playersIDs) => {
+    socket.on('initNewPlayer', (localPlayerID, playerCount, players) => {
       player.id = localPlayerID.id;
       console.log(`I am ${socket.id}, the ${playerCount}th player.`);
-      // Check all connected remote players and add them to clients world.
+      // Check all connected remote players and add them to clients world
+      console.log();
       for (let i = 0; i < playerCount; i++) {
-        if (playersIDs[i] !== player.id) {
-          addRemotePlayer(playersIDs[i]);
+        if (players[i] !== player.id) {
+          console.log('needs to be added');
+          addRemotePlayer(players[i]);
         }
       }
     });
   });
 
+  console.log(remotePlayers);
+
   function addRemotePlayer(id) {
-    console.log(`Adding player.`);
-    remotePlayers.push({ id: id, mesh: addPlayerHook() });
-    // console.log(remotePlayers);
-    // playerMeshes = remotePlayers.map((player) => {
-    //   console.log(player.mesh);
-    //   return player.mesh;
-    // });
-    // console.log(playerMeshes);
+    // console.log(`Adding player.`);
+    // remotePlayers.push({ id: id, mesh: addPlayerHook() });
+    setRemotePlayer((remotePlayers) => [
+      ...remotePlayers,
+      { id: id, mesh: addPlayerHook() },
+    ]);
   }
 
   function removeRemotePlayer(id) {
@@ -41,7 +42,7 @@ export default function InitSocket(props: boxProps) {
   }
 
   socket.on('player connect', (id, playerCount) => {
-    console.log('player connect');
+    // console.log('player connect');
     addRemotePlayer(id);
   });
 
@@ -51,32 +52,50 @@ export default function InitSocket(props: boxProps) {
   });
 
   function addPlayerHook() {
+    let y = Math.floor(Math.random() * 20) - 10;
     let x = Math.floor(Math.random() * 20) - 10;
     return (
-      <mesh position={[x, 10, 0]}>
+      <mesh position={[x, 10, y]}>
         <boxBufferGeometry attach="geometry" args={[1, 1, 1]} />
         <meshStandardMaterial attach="material" color={0x00ff00} />
       </mesh>
     );
   }
 
-  useEffect(() => {
-    console.log('remoteplayers');
-    console.log(remotePlayers);
-  }, [remotePlayers]);
+  // useEffect(() => {
+  //   const playerMeshFun = remotePlayers.map((player) => {
+  //     return player.mesh;
+  //   });
+  //   console.log('FUN!');
+  //   console.log(playerMeshFun);
+  // }, [remotePlayers]);
 
-  return (
-    <group>
-      <mesh position={[10, 10, 0]}>
-        <boxBufferGeometry attach="geometry" args={[1, 1, 1]} />
-        <meshStandardMaterial attach="material" color={0x00ff00} />
-      </mesh>
-      <mesh position={[2, 10, 0]}>
-        <boxBufferGeometry attach="geometry" args={[1, 1, 1]} />
-        <meshStandardMaterial attach="material" color={0x00ff00} />
-      </mesh>
-    </group>
-  );
+  const after9yearsindevelopment = remotePlayers.map((player) => {
+    console.log(player.mesh);
+    return player.mesh;
+  });
+
+  return <>{after9yearsindevelopment}</>;
+
+  // console.log(remotePlayers);
+  // const hehe = remotePlayers.map((player) => {
+  //   return player.id;
+  // });
+  // console.log(hehe);
+  // return remotePlayers;
+
+  // return (
+  //   <group>
+  //     <mesh position={[10, 10, 0]}>
+  //       <boxBufferGeometry attach="geometry" args={[1, 1, 1]} />
+  //       <meshStandardMaterial attach="material" color={0x00ff00} />
+  //     </mesh>
+  //     <mesh position={[10, 10, 0]}>
+  //       <boxBufferGeometry attach="geometry" args={[1, 1, 1]} />
+  //       <meshStandardMaterial attach="material" color={0x00ff00} />
+  //     </mesh>
+  //   </group>
+  // );
 
   // return (
   //   <group>

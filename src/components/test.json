@@ -1,0 +1,297 @@
+[
+  {
+    "id": "vLtmUtN1-3VBV8GeAAaD",
+    "mesh": {
+      "type": "mesh",
+      "key": null,
+      "ref": null,
+      "props": {
+        "position": [8, 10, 0],
+        "children": [
+          {
+            "type": "boxBufferGeometry",
+            "key": null,
+            "ref": null,
+            "props": {
+              "attach": "geometry",
+              "args": [1, 1, 1]
+            },
+            "_owner": null,
+            "_store": {}
+          },
+          {
+            "type": "meshStandardMaterial",
+            "key": null,
+            "ref": null,
+            "props": {
+              "attach": "material",
+              "color": 65280
+            },
+            "_owner": null,
+            "_store": {}
+          }
+        ]
+      },
+      "_owner": null,
+      "_store": {}
+    }
+  },
+  {
+    "id": "vL-hmzNurBueBb3cAAaE",
+    "mesh": {
+      "type": "mesh",
+      "key": null,
+      "ref": null,
+      "props": {
+        "position": [-6, 10, 0],
+        "children": [
+          {
+            "type": "boxBufferGeometry",
+            "key": null,
+            "ref": null,
+            "props": {
+              "attach": "geometry",
+              "args": [1, 1, 1]
+            },
+            "_owner": null,
+            "_store": {}
+          },
+          {
+            "type": "meshStandardMaterial",
+            "key": null,
+            "ref": null,
+            "props": {
+              "attach": "material",
+              "color": 65280
+            },
+            "_owner": null,
+            "_store": {}
+          }
+        ]
+      },
+      "_owner": null,
+      "_store": {}
+    }
+  },
+  {
+    "id": "677bY3NpelAsJd6FAAaH",
+    "mesh": {
+      "type": "mesh",
+      "key": null,
+      "ref": null,
+      "props": {
+        "position": [5, 10, 0],
+        "children": [
+          {
+            "type": "boxBufferGeometry",
+            "key": null,
+            "ref": null,
+            "props": {
+              "attach": "geometry",
+              "args": [1, 1, 1]
+            },
+            "_owner": null,
+            "_store": {}
+          },
+          {
+            "type": "meshStandardMaterial",
+            "key": null,
+            "ref": null,
+            "props": {
+              "attach": "material",
+              "color": 65280
+            },
+            "_owner": null,
+            "_store": {}
+          }
+        ]
+      },
+      "_owner": null,
+      "_store": {}
+    }
+  },
+  {
+    "id": "irJVHb9bP4RJhBm3AAaI",
+    "mesh": {
+      "type": "mesh",
+      "key": null,
+      "ref": null,
+      "props": {
+        "position": [-1, 10, 0],
+        "children": [
+          {
+            "type": "boxBufferGeometry",
+            "key": null,
+            "ref": null,
+            "props": {
+              "attach": "geometry",
+              "args": [1, 1, 1]
+            },
+            "_owner": null,
+            "_store": {}
+          },
+          {
+            "type": "meshStandardMaterial",
+            "key": null,
+            "ref": null,
+            "props": {
+              "attach": "material",
+              "color": 65280
+            },
+            "_owner": null,
+            "_store": {}
+          }
+        ]
+      },
+      "_owner": null,
+      "_store": {}
+    }
+  },
+  {
+    "id": "s_UfpF4LuMiBjh-kAAaL",
+    "mesh": {
+      "type": "mesh",
+      "key": null,
+      "ref": null,
+      "props": {
+        "position": [-3, 10, 0],
+        "children": [
+          {
+            "type": "boxBufferGeometry",
+            "key": null,
+            "ref": null,
+            "props": {
+              "attach": "geometry",
+              "args": [1, 1, 1]
+            },
+            "_owner": null,
+            "_store": {}
+          },
+          {
+            "type": "meshStandardMaterial",
+            "key": null,
+            "ref": null,
+            "props": {
+              "attach": "material",
+              "color": 65280
+            },
+            "_owner": null,
+            "_store": {}
+          }
+        ]
+      },
+      "_owner": null,
+      "_store": {}
+    }
+  },
+  {
+    "id": "Sk5U-YB_q7WWf19jAAaM",
+    "mesh": {
+      "type": "mesh",
+      "key": null,
+      "ref": null,
+      "props": {
+        "position": [9, 10, 0],
+        "children": [
+          {
+            "type": "boxBufferGeometry",
+            "key": null,
+            "ref": null,
+            "props": {
+              "attach": "geometry",
+              "args": [1, 1, 1]
+            },
+            "_owner": null,
+            "_store": {}
+          },
+          {
+            "type": "meshStandardMaterial",
+            "key": null,
+            "ref": null,
+            "props": {
+              "attach": "material",
+              "color": 65280
+            },
+            "_owner": null,
+            "_store": {}
+          }
+        ]
+      },
+      "_owner": null,
+      "_store": {}
+    }
+  },
+  {
+    "mesh": {
+      "type": "mesh",
+      "key": null,
+      "ref": null,
+      "props": {
+        "position": [2, 10, 0],
+        "children": [
+          {
+            "type": "boxBufferGeometry",
+            "key": null,
+            "ref": null,
+            "props": {
+              "attach": "geometry",
+              "args": [1, 1, 1]
+            },
+            "_owner": null,
+            "_store": {}
+          },
+          {
+            "type": "meshStandardMaterial",
+            "key": null,
+            "ref": null,
+            "props": {
+              "attach": "material",
+              "color": 65280
+            },
+            "_owner": null,
+            "_store": {}
+          }
+        ]
+      },
+      "_owner": null,
+      "_store": {}
+    }
+  },
+  {
+    "id": "mSoYBm39nqXbzxVtAAaQ",
+    "mesh": {
+      "type": "mesh",
+      "key": null,
+      "ref": null,
+      "props": {
+        "position": [-1, 10, 0],
+        "children": [
+          {
+            "type": "boxBufferGeometry",
+            "key": null,
+            "ref": null,
+            "props": {
+              "attach": "geometry",
+              "args": [1, 1, 1]
+            },
+            "_owner": null,
+            "_store": {}
+          },
+          {
+            "type": "meshStandardMaterial",
+            "key": null,
+            "ref": null,
+            "props": {
+              "attach": "material",
+              "color": 65280
+            },
+            "_owner": null,
+            "_store": {}
+          }
+        ]
+      },
+      "_owner": null,
+      "_store": {}
+    }
+  }
+]

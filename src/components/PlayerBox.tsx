@@ -1,7 +1,7 @@
 //@ts-nocheck
 import { useBox } from '@react-three/cannon';
-import { useEffect, useRef, useState } from 'react';
-import { useThree, useFrame, useLoader } from '@react-three/fiber';
+import { useEffect, useRef } from 'react';
+import { useThree, useFrame } from '@react-three/fiber';
 import { Vector3 } from 'three';
 import { useKeysToMove } from './hooks/userKeyboard';
 import AudioListener from '@/components/utils/AudioListener';
@@ -27,7 +27,7 @@ export default function PlayerBox(props: boxProps) {
     api.velocity.subscribe((v) => (velocity.current = v));
   }, [api.velocity]);
   useEffect(() => {
-    console.log('Set boxRef BoxApi states');
+    // console.log('Set boxRef BoxApi states');
     useStore.setState({ boxRef: ref, boxAPI: api });
   }, [ref, api]);
 

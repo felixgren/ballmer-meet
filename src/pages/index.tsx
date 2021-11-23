@@ -26,13 +26,13 @@ const Game: React.FC = () => {
         // enablePan={false}
         />
         <Sky
-          sunPosition={[130, 10, -175]}
-          distance={300}
-          turbidity={15.5}
-          rayleigh={0.6}
-          mieCoefficient={0.006}
-          mieDirectionalG={0.9}
-          azimuth={0.35}
+          sunPosition={[80, 20, -175]}
+          distance={600}
+          turbidity={10}
+          rayleigh={3}
+          mieCoefficient={0.005}
+          mieDirectionalG={0.69}
+          azimuth={180}
         />
         <ambientLight intensity={0.5} position={[160, 10, -200]} />
 

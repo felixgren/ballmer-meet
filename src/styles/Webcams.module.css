@@ -1,0 +1,12 @@
+.webcams {
+  border: 4px solid #4e4e50;
+  height: 200px;
+  width: 250px;
+  margin-left: 10px;
+  background-color: #4e4e50;
+}
+.username {
+  color: rgb(0, 0, 0);
+  background-color: rgb(255, 218, 236);
+  width: 70px;
+}

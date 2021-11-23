@@ -9,9 +9,15 @@
 
 .webcamsWrapper {
   background-color: #36393f;
-  height: 200px;
+  height: 250px;
   width: 900px;
   border-radius: 8px;
   margin-right: 30px;
   margin-bottom: 50px;
+  max-width: 900px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  overflow: auto;
 }

@@ -21,15 +21,10 @@ const ControlButtons = () => {
             src={NoCamIcon}
             width="20px"
             height="20px"
-            alt="microphone icon"
+            alt="cam off icon"
           />
         ) : (
-          <Image
-            src={CamIcon}
-            width="20px"
-            height="20px"
-            alt="microphone icon"
-          />
+          <Image src={CamIcon} width="20px" height="20px" alt="cam icon" />
         )}
       </button>
       <button
@@ -41,7 +36,7 @@ const ControlButtons = () => {
             src={NoMicrophoneIcon}
             width="20px"
             height="20px"
-            alt="microphone icon"
+            alt="microphone off icon"
           />
         ) : (
           <Image

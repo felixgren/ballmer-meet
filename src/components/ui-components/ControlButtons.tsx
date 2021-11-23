@@ -1,5 +1,5 @@
 //@ts-nocheck
-import { useState, useEffect, useRef } from 'react';
+import { useState } from 'react';
 import styles from '../../styles/ControlButtons.module.css';
 import Image from 'next/image';
 import MicrophoneIcon from '@/img/microphone.png';

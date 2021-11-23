@@ -2,45 +2,33 @@
 //@ts-nocheck
 import io from 'socket.io-client';
 import { useThree } from '@react-three/fiber';
+import RemotePlayer from '@/components/RemotePlayer';
 
-let cubes = {};
 export default function InitSocket(props: boxProps) {
   console.log('init sockets');
   const socket = io('http://localhost:5000');
 
-  let player = {};
-  let remotePlayers = {};
-
-  //   const test = addPlayerHook();
-  //   console.log(test);
-  //   addPlayerHook();
-
-  //   for (let i = 0; i < 10; i++) {
-  //     addPlayerHook();
-  //   }
-
-  // for (let i = 0; i < 10; i++) {
-  //   addPlayerHook(i);
-  // }
-  // console.log(cubes);
+  const player = {};
+  const remotePlayers = [{}];
 
   const get = useThree((state) => state.get);
-  console.log(get);
   console.log(get());
 
   socket.on('connect', () => {
-    socket.on('initNewPlayer', (data, playerCount, playersObject) => {
+    socket.on('initNewPlayer', (data, playerCount, playersObject, hello) => {
       player.id = data.id;
       console.log(`I am ${socket.id}, the ${playerCount}th player.`);
-      remotePlayers = playersObject;
+      console.log(playersObject);
+      console.log(hello);
+      // remotePlayers = playersObject;
 
       // Check all connected remote players and add them to clients world.
       for (let i = 0; i < playerCount; i++) {
-        if (remotePlayers[i] !== player.id) {
+        if (playersObject[i] !== player.id) {
           console.log(
-            `${remotePlayers[i]} was already in the world, and needs to be added to yours... `
+            `${playersObject[i]} was already in the world, and needs to be added to yours... `
           );
-          addRemotePlayer(remotePlayers[i]);
+          addRemotePlayer(playersObject[i]);
         }
       }
     });
@@ -59,9 +47,15 @@ export default function InitSocket(props: boxProps) {
   function addRemotePlayer(id) {
     remotePlayers[id] = {};
     remotePlayers[id].test = 'test';
-    console.log(`${id} has been added to remotePlayers object!`);
+    remotePlayers[id].mesh = addPlayerHook();
+    // remotePlayers[id].mesh = <RemotePlayer id={id} />;
     console.log(remotePlayers);
-    // addPlayerHook();
+    console.log(remotePlayers[id].mesh);
+    remotePlayers.map((player) => {
+      console.log(player.mesh);
+    });
+    console.log(remotePlayers);
+    console.log(`${id} has been added to remotePlayers object!`);
   }
 
   function removeRemotePlayer(id) {
@@ -70,39 +64,37 @@ export default function InitSocket(props: boxProps) {
     console.log(remotePlayers);
   }
 
-  let x = Math.floor(Math.random() * 20) - 10;
-  const playersObject = [{}];
-  for (let i = 0; i < 10; i++) {
-    playersObject[i] = {};
-    playersObject[i].mesh = addPlayerHook();
-  }
+  // const remotePlayersObject = [{}];
 
-  console.log(playersObject);
+  // for (let i = 0; i <= 10; i++) {
+  //   remotePlayersObject[i] = {};
+  //   remotePlayersObject[i].mesh = <RemotePlayer />;
+  // }
+  // remotePlayersObject.map((player) => {
+  //   console.log(player.mesh);
+  // });
 
-  playersObject.map((player) => {
+  // const remotePlayerMeshes = remotePlayersObject.map((player) => {
+  //   return player.mesh;
+  // });
+
+  const realPlayersMesh = remotePlayers.map((player) => {
+    return player.mesh;
+  });
+
+  remotePlayers.map((player) => {
     console.log(player.mesh);
   });
 
-  return playersObject.map((player) => {
-    return player.mesh;
-  });
-}
+  return realPlayersMesh as any;
 
-function generateCube() {
-  return (
-    <mesh position={[x, 10, 0]}>
-      <boxBufferGeometry attach="geometry" args={[1, 1, 1]} />
-      <meshStandardMaterial attach="material" color={0x00ff00} />
-    </mesh>
-  );
+  // return playersObject.map((player) => {
+  //   return player.mesh;
+  // });
 }
 
 function addPlayerHook() {
   let x = Math.floor(Math.random() * 20) - 10;
-
-  // cubes[id] = {};
-  // cubes[id].mesh = { generateCube(); };
-
   return (
     <mesh position={[x, 10, 0]}>
       <boxBufferGeometry attach="geometry" args={[1, 1, 1]} />

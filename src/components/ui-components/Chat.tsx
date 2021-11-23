@@ -4,7 +4,7 @@ const Chat = () => {
   return (
     <div className={styles.chatWrapper}>
       <div className={styles.outputBox}>
-        {/* insert code to conditionally render the below block */}
+        {/* insert socket code to conditionally render the below block */}
         <div className={styles.chatMessageWrapper}>
           <p className={styles.sentUserMessage}>User: </p>
           <p className={styles.chatMessage}>

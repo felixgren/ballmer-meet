@@ -1,9 +1,9 @@
-import Interface from '@/components/Interface';
+import UserInterface from '@/components/UserInterface';
 
 const Ui: React.FC = () => {
   return (
     <div>
-      <Interface />
+      <UserInterface />
     </div>
   );
 };

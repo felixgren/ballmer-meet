@@ -5,6 +5,7 @@
   align-items: flex-end;
   justify-content: center;
   flex-direction: row;
+  z-index: -500;
 }
 
 .webcamsWrapper {

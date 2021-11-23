@@ -6,15 +6,13 @@ import PlayerBox from '@/components/PlayerBox';
 import JukeBoxFactory from '@/components/JukeBoxFactory';
 import TriggerZones from '@/components/TriggerZones';
 import styles from '../styles/index.module.css';
+
 // import Sockets from '@/components/Sockets';
 
 const Game: React.FC = () => {
   return (
     <div className={styles.container}>
-      <Canvas
-        className={styles.canvasStyle}
-        camera={{ position: [0, 60, 120], fov: 50 }}
-      >
+      <Canvas camera={{ position: [0, 60, 120], fov: 50 }}>
         <OrbitControls
         // maxPolarAngle={1.1}
         // minPolarAngle={0.8}

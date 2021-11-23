@@ -1,5 +1,7 @@
 import { useCylinder, CylinderProps } from '@react-three/cannon';
 import { Color } from 'three';
+// User interface to be triggered upon entering zones
+import UserInterface from '@/components/UserInterface';
 
 interface ZoneProps extends CylinderProps {
   color: string;

@@ -2,9 +2,9 @@ import { useState } from 'react';
 import Webcams from '@/components/ui-components/Webcams';
 import ControlButtons from '@/components/ui-components/ControlButtons';
 import Chat from '@/components/ui-components/Chat';
-import styles from '@/styles/Interface.module.css';
+import styles from '@/styles/UserInterface.module.css';
 
-const Interface = () => {
+const UserInterface = () => {
   const [toggleCam, setToggleCam] = useState(false);
   return (
     <div className={styles.interfaceWrapper}>
@@ -21,4 +21,4 @@ const Interface = () => {
   );
 };
 
-export default Interface;
+export default UserInterface;

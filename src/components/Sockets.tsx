@@ -3,34 +3,37 @@
 import io from 'socket.io-client';
 import RemotePlayer from '@/components/RemotePlayer';
 import { useEffect, useState } from 'react';
+
 const socket = io('http://localhost:5000'); // haha you can't be in component with updating state...
 
-export default function InitSocket(props: boxProps) {
+export default function InitSocket() {
   console.log('init sockets');
   const player = {};
-  // let remotePlayers = [];
   const [remotePlayers, setRemotePlayer] = useState([]);
-
-  socket.on('connect', () => {
-    socket.on('initNewPlayer', (localPlayerID, playerCount, players) => {
-      player.id = localPlayerID.id;
-      console.log(`I am ${socket.id}, the ${playerCount}th player.`);
-      // Check all connected remote players and add them to clients world
-      console.log();
-      for (let i = 0; i < playerCount; i++) {
-        if (players[i] !== player.id) {
-          console.log('needs to be added');
-          addRemotePlayer(players[i]);
+  useEffect(() => {
+    socket.on('connect', () => {
+      socket.on('initNewPlayer', (localPlayerID, playerCount, players) => {
+        player.id = localPlayerID.id;
+        console.log(`I am ${socket.id}, the ${playerCount}th player.`);
+        console.log(` i am ${localPlayerID}`);
+        // Check already connected remote players and add them to clients world
+        console.log();
+        for (let i = 0; i < playerCount; i++) {
+          if (players[i] !== player.id) {
+            console.log('needs to be added');
+            addRemotePlayer(players[i]);
+          }
         }
-      }
+      });
     });
-  });
-
-  console.log(remotePlayers);
+    return () => {
+      socket.off('connect', () => {});
+      socket.off('initNewPlayer', () => {});
+    };
+  }, []);
 
   function addRemotePlayer(id) {
-    // console.log(`Adding player.`);
-    // remotePlayers.push({ id: id, mesh: addPlayerHook() });
+    console.log(`Adding player: ${id}`);
     setRemotePlayer((remotePlayers) => [
       ...remotePlayers,
       { id: id, mesh: addPlayerHook() },
@@ -38,18 +41,33 @@ export default function InitSocket(props: boxProps) {
   }
 
   function removeRemotePlayer(id) {
-    // delete remotePlayers[id];
+    console.log(`Remove player: ${id}`);
+    setRemotePlayer((remotePlayers) => [
+      ...remotePlayers.filter((player) => player.id !== id),
+    ]);
+    // let filtered = remotePlayers.filter((player) => player.id !== id);
+    // setRemotePlayer(filtered);
   }
 
-  socket.on('player connect', (id, playerCount) => {
-    // console.log('player connect');
-    addRemotePlayer(id);
-  });
+  useEffect(() => {
+    socket.on('player connect', (id, playerCount) => {
+      console.log(`player connect but inside!!!, now ${playerCount}`);
+      addRemotePlayer(id);
+    });
+    return () => {
+      socket.off('player connect', () => {});
+    };
+  }, []);
 
-  socket.on('player disconnect', (id, playerCount) => {
-    console.log('player disconnect');
-    removeRemotePlayer(id);
-  });
+  useEffect(() => {
+    socket.on('player disconnect', (id, playerCount) => {
+      console.log(`player disconnect, now ${playerCount}`);
+      removeRemotePlayer(id);
+    });
+    return () => {
+      socket.off('player disconnect', () => {});
+    };
+  }, []);
 
   function addPlayerHook() {
     let y = Math.floor(Math.random() * 20) - 10;
@@ -62,20 +80,12 @@ export default function InitSocket(props: boxProps) {
     );
   }
 
-  // useEffect(() => {
-  //   const playerMeshFun = remotePlayers.map((player) => {
-  //     return player.mesh;
-  //   });
-  //   console.log('FUN!');
-  //   console.log(playerMeshFun);
-  // }, [remotePlayers]);
-
-  const after9yearsindevelopment = remotePlayers.map((player) => {
+  const playerMeshes = remotePlayers.map((player) => {
     console.log(player.mesh);
     return player.mesh;
   });
 
-  return <>{after9yearsindevelopment}</>;
+  return <>{playerMeshes}</>;
 
   // console.log(remotePlayers);
   // const hehe = remotePlayers.map((player) => {

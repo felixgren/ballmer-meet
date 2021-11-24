@@ -40,7 +40,7 @@ export class GameServer {
       };
 
       // We give newly connected player their ID, playerCount and Players object
-      socket.emit(
+      this.io.emit(
         'initNewPlayer',
         { id: socket.id },
         this.io.engine.clientsCount,

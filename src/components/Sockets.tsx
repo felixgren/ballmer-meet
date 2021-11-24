@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 // Herein sockets will lie, better than before, ensured to slay its predecessor.
 //@ts-nocheck
 import io from 'socket.io-client';
@@ -32,23 +33,6 @@ export default function InitSocket() {
     };
   }, []);
 
-  function addRemotePlayer(id) {
-    console.log(`Adding player: ${id}`);
-    setRemotePlayer((remotePlayers) => [
-      ...remotePlayers,
-      { id: id, mesh: addPlayerHook() },
-    ]);
-  }
-
-  function removeRemotePlayer(id) {
-    console.log(`Remove player: ${id}`);
-    setRemotePlayer((remotePlayers) => [
-      ...remotePlayers.filter((player) => player.id !== id),
-    ]);
-    // let filtered = remotePlayers.filter((player) => player.id !== id);
-    // setRemotePlayer(filtered);
-  }
-
   useEffect(() => {
     socket.on('player connect', (id, playerCount) => {
       console.log(`player connect but inside!!!, now ${playerCount}`);
@@ -68,6 +52,23 @@ export default function InitSocket() {
       socket.off('player disconnect', () => {});
     };
   }, []);
+
+  function addRemotePlayer(id) {
+    console.log(`Adding player: ${id}`);
+    setRemotePlayer((remotePlayers) => [
+      ...remotePlayers,
+      { id: id, mesh: addPlayerHook() },
+    ]);
+  }
+
+  function removeRemotePlayer(id) {
+    console.log(`Remove player: ${id}`);
+    setRemotePlayer((remotePlayers) => [
+      ...remotePlayers.filter((player) => player.id !== id),
+    ]);
+    // let filtered = remotePlayers.filter((player) => player.id !== id);
+    // setRemotePlayer(filtered);
+  }
 
   function addPlayerHook() {
     let y = Math.floor(Math.random() * 20) - 10;

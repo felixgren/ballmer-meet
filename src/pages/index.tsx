@@ -5,19 +5,13 @@ import Map from '@/components/Map';
 import PlayerBox from '@/components/PlayerBox';
 import JukeBoxFactory from '@/components/JukeBoxFactory';
 import TriggerZones from '@/components/TriggerZones';
-import Chat from '@/components/ui-components/Chat';
-import Webcams from '@/components/ui-components/Webcams';
-import ControlButtons from '@/components/ui-components/ControlButtons';
 import styles from '../styles/index.module.css';
-
-// import Sockets from '@/components/Sockets';
+import UI from '@/components/ui-components/Group';
 
 const Game: React.FC = () => {
   return (
     <div className={styles.container}>
-      {/* <ControlButtons />
-      <Webcams />
-      <Chat /> */}
+      <UI />
       <Canvas camera={{ position: [0, 60, 120], fov: 50 }}>
         <OrbitControls
           maxPolarAngle={1.1}

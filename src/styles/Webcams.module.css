@@ -29,4 +29,27 @@
   justify-content: center;
   flex-direction: row;
   overflow: auto;
+  /* animation-duration: 3s; */
+  /* animation-name: slideup; */
+}
+
+@keyframes slideup {
+  from {
+    margin-left: 100%;
+    width: 300%;
+  }
+
+  to {
+    margin-left: 0%;
+    width: 100%;
+  }
+}
+
+@media (max-width: 900px) {
+  .webcamsWrapper {
+    left: 0;
+    width: 100%;
+    background-color: hotpink;
+    margin-right: 0;
+  }
 }

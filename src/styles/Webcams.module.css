@@ -1,6 +1,55 @@
-.webcamWrapper {
-  background-color: #36393f;
-  position: fixed;
-  top: 90vh;
-  right: 40%;
+.webcams {
+  height: 180px;
+  width: 220px;
+  margin-left: 10px;
+  background-color: #7796cb;
+  border: 1px solid #d1d2f9;
+}
+.username {
+  color: rgb(0, 0, 0);
+  background-color: #d1d2f9;
+  width: 70px;
+}
+
+.webcamsWrapper {
+  position: absolute;
+  z-index: 5;
+  bottom: 1vh;
+  left: 18%;
+  border: 1px solid #d1d2f9;
+  background-color: #576490;
+  height: 200px;
+  width: 900px;
+  border-radius: 8px;
+  margin-right: 30px;
+  margin-bottom: 10px;
+  max-width: 900px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  overflow: auto;
+  /* animation-duration: 3s; */
+  /* animation-name: slideup; */
+}
+
+@keyframes slideup {
+  from {
+    margin-left: 100%;
+    width: 300%;
+  }
+
+  to {
+    margin-left: 0%;
+    width: 100%;
+  }
+}
+
+@media (max-width: 900px) {
+  .webcamsWrapper {
+    left: 0;
+    width: 100%;
+    background-color: hotpink;
+    margin-right: 0;
+  }
 }

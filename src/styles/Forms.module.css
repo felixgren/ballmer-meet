@@ -24,8 +24,8 @@
 .submitButtonInvited,
 .submitButtonCreateRoom {
   padding: 15px;
-  color: rgb(255, 255, 255);
-  background-color: #fd07d4;
+  color: #d1d2f9;
+  background-color: #305464;
   border-radius: 8px;
   width: 120px;
   font-weight: bold;
@@ -55,7 +55,6 @@
   font-size: 20px;
   font-weight: bold;
   text-align: center;
-
   margin-bottom: 10px;
 }
 
@@ -75,17 +74,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
-
-  /* Prefix required. Even Firefox only supports the -webkit- prefix */
-  /* -webkit-text-stroke-width: 0.6px;
-  -webkit-text-stroke-color: rgb(235, 15, 15); */
+  color: #d1d2f9;
 }
 .instructions {
-  color: white;
+  color: #d1d2f9;
   margin-bottom: 75px;
-  /* -webkit-text-stroke-width: 0.4px;
-  -webkit-text-stroke-color: rgb(235, 15, 15); */
 }
 
 .formLabel {

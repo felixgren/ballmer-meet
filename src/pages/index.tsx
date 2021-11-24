@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { Canvas } from '@react-three/fiber';
 import { Sky, OrbitControls } from '@react-three/drei';
 import { Physics, Debug } from '@react-three/cannon';
@@ -10,65 +9,46 @@ import Chat from '@/components/ui-components/Chat';
 import Webcams from '@/components/ui-components/Webcams';
 import ControlButtons from '@/components/ui-components/ControlButtons';
 import styles from '../styles/index.module.css';
-import { BowserProvider } from '@/components/BowserContext';
-import { useBowser, useBowserUpdate } from '@/components/BowserContext';
-import { useEffect, useState } from 'react';
 
 // import Sockets from '@/components/Sockets';
 
 const Game: React.FC = () => {
-  // const test = true;
-
-  // const [showPopup, setPopupState] = useState(false);
-
-  // useEffect((): void => {
-  //   console.log(showPopup);
-  //   console.log('ehhh hoooo hoehoehhoe');
-  // }, [showPopup]);
-  // const test = useStore((state) => state.showUI);
-
-  // useEffect(() => {
-  //   console.log(test);
-  // }, [test]);
-
   return (
     <div className={styles.container}>
-      <BowserProvider>
-        <ControlButtons />
-        <Webcams />
-        <Chat />
-        <Canvas camera={{ position: [0, 60, 120], fov: 50 }}>
-          <OrbitControls
-            maxPolarAngle={1.1}
-            minPolarAngle={0.8}
-            minDistance={50}
-            maxDistance={134.16}
-            minAzimuthAngle={-Math.PI / 2}
-            rotateSpeed={0.3}
-            enablePan={false}
-          />
-          <Sky
-            sunPosition={[90, 15, -120]}
-            distance={400}
-            turbidity={9}
-            rayleigh={3}
-            mieCoefficient={0.05}
-            mieDirectionalG={0.65}
-            azimuth={100}
-          />
-          <ambientLight intensity={0.5} position={[160, 10, -200]} />
+      {/* <ControlButtons />
+      <Webcams />
+      <Chat /> */}
+      <Canvas camera={{ position: [0, 60, 120], fov: 50 }}>
+        <OrbitControls
+          maxPolarAngle={1.1}
+          minPolarAngle={0.8}
+          minDistance={50}
+          maxDistance={134.16}
+          minAzimuthAngle={-Math.PI / 2}
+          rotateSpeed={0.3}
+          enablePan={false}
+        />
+        <Sky
+          sunPosition={[90, 15, -120]}
+          distance={400}
+          turbidity={9}
+          rayleigh={3}
+          mieCoefficient={0.05}
+          mieDirectionalG={0.65}
+          azimuth={100}
+        />
+        <ambientLight intensity={0.5} position={[160, 10, -200]} />
 
-          <Physics gravity={[0, -30, 0]} iterations={20} tolerance={0}>
-            <Map />
-            <Debug color="black">
-              <PlayerBox />
-            </Debug>
-            <JukeBoxFactory />
-            <TriggerZones />
-          </Physics>
-          {/* <Sockets /> */}
-        </Canvas>
-      </BowserProvider>
+        <Physics gravity={[0, -30, 0]} iterations={20} tolerance={0}>
+          <Map />
+          <Debug color="black">
+            <PlayerBox />
+          </Debug>
+          <JukeBoxFactory />
+          <TriggerZones />
+        </Physics>
+        {/* <Sockets /> */}
+      </Canvas>
     </div>
   );
 };

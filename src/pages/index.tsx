@@ -21,6 +21,7 @@ const Game: React.FC = () => {
           minAzimuthAngle={-Math.PI / 2}
           rotateSpeed={0.3}
           enablePan={false}
+          enableRotate={false}
         />
         <Sky
           sunPosition={[10, 10, -120]}

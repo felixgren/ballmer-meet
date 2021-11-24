@@ -24,8 +24,8 @@
 .submitButtonInvited,
 .submitButtonCreateRoom {
   padding: 15px;
-  color: rgb(255, 255, 255);
-  background-color: #36393f;
+  color: #d1d2f9;
+  background-color: #305464;
   border-radius: 8px;
   width: 120px;
   font-weight: bold;
@@ -74,10 +74,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #36393f;
+  color: #d1d2f9;
 }
 .instructions {
-  color: #36393f;
+  color: #d1d2f9;
   margin-bottom: 75px;
 }
 

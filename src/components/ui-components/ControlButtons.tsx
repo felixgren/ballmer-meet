@@ -1,4 +1,3 @@
-//@ts-nocheck
 import { useState } from 'react';
 import styles from '../../styles/ControlButtons.module.css';
 import Image from 'next/image';

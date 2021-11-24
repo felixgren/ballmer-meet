@@ -19,7 +19,7 @@ const Forms = () => {
   return (
     <group ref={sectionRef}>
       <div className={styles.selectCreateOrJoin}>
-        <h1 className={styles.welcome}>Welcome to [Cool App]</h1>
+        <h1 className={styles.welcome}>Welcome to [Ballmer Meet]</h1>
         <h2 className={styles.instructions}>
           Would you like to create a new call, or join an existing one?
         </h2>
@@ -38,7 +38,7 @@ const Forms = () => {
       </div>
 
       <form className={styles.formContainerCreateRoom}>
-        <h1 className={styles.welcome}>Welcome to [Cool App]</h1>
+        <h1 className={styles.welcome}>Welcome to [Ballmer Meet]</h1>
         <h2 className={styles.instructions}>
           To create a call please choose a username and a number of voice
           channels.
@@ -80,7 +80,7 @@ const Forms = () => {
         <h1 className={styles.generatedLink}>Here is your link, bitch</h1>
         <h2 className={styles.printLink}>THIS IS THE URL</h2>
         {/* Här ska man skickas direkt till spelet */}
-        <Link href="/" passHref={true}>
+        <Link href="/game" passHref={true}>
           <input
             className={styles.submitButtonCreateRoom}
             type="submit"
@@ -104,7 +104,7 @@ const Forms = () => {
           />
         </label>
         {/* Här ska man skickas direkt till spelet */}
-        <Link href="/" passHref={true}>
+        <Link href="/game" passHref={true}>
           <input
             className={styles.submitButtonInvited}
             type="submit"

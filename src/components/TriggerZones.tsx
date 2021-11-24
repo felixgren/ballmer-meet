@@ -54,8 +54,8 @@ export default function Zone() {
       <ZoneTrigger
         position={[30, 6, 10]}
         args={[10, 10, 10]}
-        color={'red'}
-        name={'red room is great'}
+        color={'green'}
+        name={'green room is great'}
         onCollideBegin={(e) => {
           setZone(e);
         }}
@@ -67,8 +67,8 @@ export default function Zone() {
       <ZoneTrigger
         position={[-30, 6, 10]}
         args={[10, 10, 10]}
-        color={'blue'}
-        name={'the blue room'}
+        color={'purple'}
+        name={'the purple room'}
         onCollideBegin={(e) => {
           setZone(e);
         }}

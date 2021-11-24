@@ -1,5 +1,5 @@
 import { Canvas } from '@react-three/fiber';
-import { Sky, OrbitControls } from '@react-three/drei';
+import { Sky, OrbitControls, SpotLight } from '@react-three/drei';
 import { Physics, Debug } from '@react-three/cannon';
 import Map from '@/components/Map';
 import PlayerBox from '@/components/PlayerBox';
@@ -23,15 +23,13 @@ const Game: React.FC = () => {
           enablePan={false}
         />
         <Sky
-          sunPosition={[90, 15, -120]}
-          distance={400}
-          turbidity={9}
+          sunPosition={[10, 10, -120]}
+          distance={450}
           rayleigh={3}
           mieCoefficient={0.05}
-          mieDirectionalG={0.65}
-          azimuth={100}
+          mieDirectionalG={0.7}
         />
-        <ambientLight intensity={0.5} position={[160, 10, -200]} />
+        <ambientLight intensity={0.6} position={[160, 10, -200]} />
 
         <Physics gravity={[0, -30, 0]} iterations={20} tolerance={0}>
           <Map />

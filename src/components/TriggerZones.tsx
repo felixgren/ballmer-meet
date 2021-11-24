@@ -1,6 +1,6 @@
 import { useCylinder, CylinderProps } from '@react-three/cannon';
 import { Color } from 'three';
-
+import Chat from '@/components/ui-components/Chat';
 interface ZoneProps extends CylinderProps {
   color: string;
   name: string;
@@ -15,6 +15,7 @@ export default function Zone() {
       console.log(`${meshName} enters ${e.target.name}`);
       startColor.copy(e.body.material.color);
       e.body.material.color.copy(e.target.material.color);
+      return Chat;
     }
     if (e.type == 'collideEnd') {
       console.log(`${meshName} leaves ${e.target.name}`);

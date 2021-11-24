@@ -1,4 +1,4 @@
-# Backend for Ballmer Chat
+# Backend for Ballmer Meet
 
 This is the backend node server for Ballmer Chat.
 

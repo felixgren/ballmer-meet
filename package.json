@@ -1,5 +1,5 @@
 {
-  "name": "examensarbete",
+  "name": "ballmer-meet",
   "private": true,
   "scripts": {
     "dev": "next dev",

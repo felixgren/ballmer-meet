@@ -16,8 +16,8 @@ three-fiber, socket.io, express/fastify, webRTC.
 ### Setting up project
 
 ```
-git clone https://github.com/felixgren/examensarbete.git
-cd examensarbete
+git clone https://github.com/felixgren/ballmer-meet.git
+cd ballmer-meet
 npm install
 npm start
 ```

@@ -6,6 +6,7 @@ import PlayerBox from '@/components/PlayerBox';
 import JukeBoxFactory from '@/components/JukeBoxFactory';
 import TriggerZones from '@/components/TriggerZones';
 import styles from '../styles/index.module.css';
+import Sockets from '@/components/Sockets';
 import UI from '@/components/ui-components/Group';
 
 const Game: React.FC = () => {
@@ -40,7 +41,7 @@ const Game: React.FC = () => {
           <JukeBoxFactory />
           <TriggerZones />
         </Physics>
-        {/* <Sockets /> */}
+        <Sockets />
       </Canvas>
     </div>
   );

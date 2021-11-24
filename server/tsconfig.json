@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "esModuleInterop": true,
+    "module": "commonjs",
+    "strictPropertyInitialization": false,
+    "outDir": "dist"
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/index.ts",
+    "src/server.ts",
+    "src/server-wip-base.js"
+  ],
+  "exclude": ["node_modules"]
+}

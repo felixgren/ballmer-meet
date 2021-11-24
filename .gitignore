@@ -38,5 +38,4 @@ yarn-error.log*
 
 # custom start
 old-nextjs
-server
 # custom end

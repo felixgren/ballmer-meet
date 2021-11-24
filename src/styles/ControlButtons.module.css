@@ -2,28 +2,27 @@
 .toggleMicrophone {
   height: 40px;
   width: 40px;
-  position: fixed;
-  background-color: rgb(255, 218, 236);
+  margin-right: 30px;
+  margin-top: 5px;
+  background-color: #d1d2f9;
   border-radius: 50%;
   border: none;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.toggleMicrophone {
-  right: 70vw;
-  top: 90vh;
-}
-
-.toggleWebcam {
-  right: 70vw;
-  top: 95vh;
-}
 
 .toggleWebcam:hover,
 .toggleMicrophone:hover {
   transform: scale(1.1);
   opacity: 0.9;
-  box-shadow: 1px 1px 0.5px;
+  box-shadow: 0.5px 0.5px 0.5px;
   cursor: pointer;
+}
+.btnWrapper {
+  margin-bottom: 10px;
+  position: absolute;
+  bottom: 2vh;
+  left: 12vw;
+  z-index: 5;
 }

@@ -6,6 +6,7 @@ import styles from '@/styles/UserInterface.module.css';
 
 const UserInterface = () => {
   const [toggleCam, setToggleCam] = useState(false);
+  const amountOfWebcams = 3;
   return (
     <div className={styles.interfaceWrapper}>
       <ControlButtons />

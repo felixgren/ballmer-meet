@@ -1,9 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-// Herein sockets will lie, better than before, ensured to slay its predecessor.
 //@ts-nocheck
 import { useEffect, useState } from 'react';
 
-export default function BetterSockets() {
+export default function SocketManager() {
   console.log('BetterSockets mounted');
   const player = {};
   const [remotePlayers, setRemotePlayer] = useState([]);

@@ -24,7 +24,7 @@
 .submitButtonInvited,
 .submitButtonCreateRoom {
   padding: 15px;
-  color: #d1d2f9;
+  color: #ffffff;
   background-color: #305464;
   border-radius: 8px;
   width: 120px;
@@ -74,11 +74,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #d1d2f9;
+  color: #ffffff;
+  font-size: 35px;
 }
 .instructions {
-  color: #d1d2f9;
+  color: #ffffff;
   margin-bottom: 75px;
+  font-size: 29px;
 }
 
 .formLabel {

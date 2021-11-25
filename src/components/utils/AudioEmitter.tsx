@@ -18,11 +18,9 @@ export default function AudioEmitter({ url }) {
         ? console.log('AudioContext start!')
         : console.log(`AudioContext failed, wonder why. ${sound.current}`);
     };
-    if (sound.current.context.state === 'suspended') {
+    if (sound.current.context.state === 'suspended' || 'running') {
       document.addEventListener('click', resumeAudio);
-    } else if (sound.current.context.state === 'running') {
-      console.log('AudioContext running. Starting sound.');
-      sound.current.play();
+      document.addEventListener('click', resumeAudio);
     } else {
       console.log(
         `AudioContext unhandled state: ${sound.current.context.state}`

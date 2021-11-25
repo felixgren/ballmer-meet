@@ -7,14 +7,12 @@ import JukeBoxFactory from '@/components/JukeBoxFactory';
 import TriggerZones from '@/components/TriggerZones';
 import styles from '../styles/index.module.css';
 // import Sockets from '@/components/Sockets';
-import BetterSockets from '@/components/BetterSockets';
+// import BetterSockets from '@/components/BetterSockets';
 import UI from '@/components/ui-components/Group';
-// import { SocketContext, socket } from '@/components/socket';
 
 const Game: React.FC = () => {
   return (
     <div className={styles.container}>
-      {/* <SocketContext.Provider value={socket}> */}
       <UI />
       <Canvas camera={{ position: [0, 60, 120], fov: 50 }}>
         <OrbitControls
@@ -47,9 +45,8 @@ const Game: React.FC = () => {
           <TriggerZones />
         </Physics>
         {/* <Sockets /> */}
-        <BetterSockets />
+        {/* <BetterSockets /> */}
       </Canvas>
-      {/* </SocketContext.Provider> */}
     </div>
   );
 };

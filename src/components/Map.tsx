@@ -14,7 +14,7 @@ function World({ args, position, rotation }: CylinderProps) {
     <group>
       <mesh {...{ position, ref }}>
         <cylinderGeometry args={args} />
-        <meshPhongMaterial attach="material" color="#25242b" />
+        <meshPhongMaterial attach="material" color="#37363a" />
       </mesh>
       <mesh {...{ rotation }} position={[0, 0.05, 0]}>
         <circleGeometry attach="geometry" args={[60, 128]} />

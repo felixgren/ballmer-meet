@@ -26,7 +26,7 @@ export default function JukeBoxFactory(props: boxProps) {
         args={[3, 6, 3]}
         color={'purple'}
         name={'STEVEBOX'}
-        tune={'audio/developers.mp3'}
+        tune={'audio/crazyfrog.mp3'}
       />
       {/* <JukeBox
         position={[-20, 80, -40]}

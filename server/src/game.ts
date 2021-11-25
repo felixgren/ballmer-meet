@@ -70,7 +70,7 @@ export class GameServer {
       // );
 
       socket.on('initRequest', () => {
-        console.log('they are trying to connect.');
+        console.log(`Init Request from ${socket.id}`);
         // We give newly connected player their ID, playerCount and Players object
         this.io.emit(
           'initResponse',
@@ -111,6 +111,7 @@ export class GameServer {
           this.players[socket.id].direction = direction;
         }
       });
+      console.log(this.players);
       // });
     });
   }

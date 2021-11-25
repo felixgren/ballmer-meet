@@ -7,12 +7,14 @@ export default function SocketManager() {
   console.log('SocketManager mounted');
   const socket = useStore((state) => state.socket);
   const player = {};
+
   const [remotePlayers, setRemotePlayer] = useState([]);
+  const [remoteMeshes, setMeshes] = useState([]);
 
   useEffect(() => {
     socket.emit('initRequest', () => {});
     socket.on('initResponse', (localPlayerID, playerCount, players) => {
-      player.id = localPlayerID;
+      player = localPlayerID;
       console.log(player.id);
       console.log(players);
       console.log(`I am ${socket.id}, the ${playerCount}th player.`);
@@ -20,7 +22,10 @@ export default function SocketManager() {
       for (let i = 0; i < playerCount; i++) {
         if (players[i] !== player.id) {
           console.log(`${players[i]} needs to be added`);
+          console.log(player.id);
           addRemotePlayer(players[i]);
+        } else if (player.id === players[i]) {
+          console.log(`${player.id} is local player`);
         }
       }
     });
@@ -31,14 +36,14 @@ export default function SocketManager() {
       console.log(`player connect, now ${playerCount}`);
       addRemotePlayer(id);
     });
-  }, []);
+  }, [socket]);
 
   useEffect(() => {
     socket.on('player-disconnect', (id, playerCount) => {
       console.log(`player disconnect, now ${playerCount}`);
       removeRemotePlayer(id);
     });
-  }, []);
+  }, [socket]);
 
   function addRemotePlayer(id) {
     console.log(`Adding player: ${id}`);
@@ -68,10 +73,14 @@ export default function SocketManager() {
 
   // return <></>;
 
-  const playerMeshes = remotePlayers.map((player) => {
-    console.log(player.mesh);
-    return player.mesh;
-  });
+  useEffect(() => {
+    setMeshes(
+      remotePlayers.map((player) => {
+        console.log(player.mesh);
+        return player.mesh;
+      })
+    );
+  }, [socket, remotePlayers]);
 
-  return <group> {playerMeshes} </group>;
+  return <group> {remoteMeshes} </group>;
 }

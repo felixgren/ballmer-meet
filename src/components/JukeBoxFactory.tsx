@@ -1,5 +1,6 @@
 //@ts-nocheck
 import { useBox } from '@react-three/cannon';
+import { Html } from '@react-three/drei';
 import AudioEmitter from '@/components/utils/AudioEmitter';
 type boxProps = JSX.IntrinsicElements['mesh'];
 
@@ -16,6 +17,18 @@ export default function JukeBoxFactory(props: boxProps) {
         <AudioEmitter url={tune} />
         <boxGeometry args={args} />
         <meshStandardMaterial color={color} />
+        <Html
+          sprite
+          transform
+          distanceFactor={20}
+          position={[2, 10, 0]}
+          style={{
+            fontSize: '35px',
+            padding: '10px 18px',
+          }}
+        >
+          <h1>Bangers</h1>
+        </Html>
       </mesh>
     );
   }

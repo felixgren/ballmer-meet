@@ -24,5 +24,10 @@
   position: absolute;
   bottom: 2vh;
   left: 12vw;
-  z-index: 5;
+  z-index: 20;
+}
+@media (max-width: 1291px) {
+  .btnWrapper {
+    left: 5vw;
+  }
 }

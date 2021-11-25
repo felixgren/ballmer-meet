@@ -2,6 +2,7 @@ import Chat from '@/components/ui-components/Chat';
 import Webcams from '@/components/ui-components/Webcams';
 import ControlButtons from '@/components/ui-components/ControlButtons';
 import useStore from '@/components/helpers/store';
+import styles from '@/styles/Ui.module.css';
 // import { useEffect } from 'react';
 
 const UI = () => {
@@ -13,8 +14,10 @@ const UI = () => {
   return (
     <>
       {<ControlButtons />}
-      {showUI && <Webcams />}
-      {showUI && <Chat />}
+      <div className={styles.uiWrapper}>
+        {showUI && <Webcams />}
+        {showUI && <Chat />}
+      </div>
     </>
   );
 };

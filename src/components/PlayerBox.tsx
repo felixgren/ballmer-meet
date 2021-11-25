@@ -1,4 +1,3 @@
-//@ts-nocheck
 import { useBox } from '@react-three/cannon';
 import { useEffect, useRef } from 'react';
 import { useThree, useFrame } from '@react-three/fiber';

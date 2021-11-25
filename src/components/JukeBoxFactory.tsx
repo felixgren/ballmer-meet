@@ -22,19 +22,19 @@ export default function JukeBoxFactory(props: boxProps) {
   return (
     <group>
       <JukeBox
-        position={[20, 80, -40]}
+        position={[0, 80, -55]}
         args={[3, 6, 3]}
-        color={'deepskyblue'}
+        color={'purple'}
         name={'STEVEBOX'}
         tune={'audio/developers.mp3'}
       />
-      <JukeBox
+      {/* <JukeBox
         position={[-20, 80, -40]}
         args={[1.5, 1.5, 1.5]}
         color={'green'}
         name={'JUMPBOX'}
         tune={'audio/quakejump.ogg'}
-      />
+      /> */}
     </group>
   );
 }

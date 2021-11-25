@@ -22,7 +22,7 @@ export default function SocketManager() {
       for (let i = 0; i < playerCount; i++) {
         if (players[i] !== player.id) {
           console.log(`${players[i]} needs to be added`);
-          console.log(player.id);
+          console.log(`${player.id} is me!`);
           addRemotePlayer(players[i]);
         } else if (player.id === players[i]) {
           console.log(`${player.id} is local player`);

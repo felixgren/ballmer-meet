@@ -47,28 +47,6 @@ export class GameServer {
         this.io.emit('backendSaysHello', this.test, socket.id);
       });
 
-      socket.on('initMePls', () => {
-        console.log('they are REALLY trying to connect.');
-
-        this.io.emit(
-          'initResponse',
-          { id: socket.id },
-          this.io.engine.clientsCount,
-          Object.keys(this.players)
-        );
-      });
-
-      // We give newly connected player their ID, playerCount and Players object
-      // this.io.emit(
-      //   'initNewPlayer',
-      //   { id: socket.id },
-      //   this.io.engine.clientsCount,
-      //   Object.keys(this.players)
-      //   // this.players,
-      //   // console.log(Object.keys(this.players)),
-      //   // console.log(this.players)
-      // );
-
       socket.on('initRequest', () => {
         console.log(`Init Request from ${socket.id}`);
         // We give newly connected player their ID, playerCount and Players object

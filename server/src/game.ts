@@ -33,6 +33,7 @@ export class GameServer {
 
   private handleSocketEvents(): void {
     this.io.on('connection', (socket) => {
+      // socket.on('initRequest', () => {
       console.log(`User ${socket.id} connected`);
 
       // Add to server players object
@@ -50,7 +51,7 @@ export class GameServer {
         console.log('they are REALLY trying to connect.');
 
         this.io.emit(
-          'initNewPlayer',
+          'initResponse',
           { id: socket.id },
           this.io.engine.clientsCount,
           Object.keys(this.players)
@@ -68,9 +69,20 @@ export class GameServer {
       //   // console.log(this.players)
       // );
 
+      socket.on('initRequest', () => {
+        console.log('they are trying to connect.');
+        // We give newly connected player their ID, playerCount and Players object
+        this.io.emit(
+          'initResponse',
+          { id: socket.id },
+          this.io.engine.clientsCount,
+          Object.keys(this.players)
+        );
+      });
+
       // We give all clients notice of new player and their ID..
       socket.broadcast.emit(
-        'player connect',
+        'player-connect',
         socket.id,
         this.io.engine.clientsCount
       );
@@ -79,7 +91,7 @@ export class GameServer {
       socket.on('disconnect', () => {
         console.log(`User ${socket.id} disconnected`);
         this.io.emit(
-          'player disconnect',
+          'player-disconnect',
           socket.id,
           this.io.engine.clientsCount
         );
@@ -99,6 +111,7 @@ export class GameServer {
           this.players[socket.id].direction = direction;
         }
       });
+      // });
     });
   }
 

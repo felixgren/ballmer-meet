@@ -1,25 +1,28 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 //@ts-nocheck
 import { useEffect, useState } from 'react';
+import useStore from '@/components/helpers/store';
 
 export default function SocketManager() {
-  console.log('BetterSockets mounted');
+  console.log('SocketManager mounted');
+  const socket = useStore((state) => state.socket);
   const player = {};
   const [remotePlayers, setRemotePlayer] = useState([]);
 
   useEffect(() => {
-    socket.on('initRequest', () => {
-      socket.on('initResponse', (localPlayerID, playerCount, players) => {
-        player.id = localPlayerID.id;
-        console.log(`I am ${socket.id}, the ${playerCount}th player.`);
-        // Check already connected remote players and add them to clients world
-        // for (let i = 0; i < playerCount; i++) {
-        //   if (players[i] !== player.id) {
-        //     console.log('needs to be added');
-        //     addRemotePlayer(players[i]);
-        //   }
-        // }
-      });
+    socket.emit('initRequest', () => {});
+    socket.on('initResponse', (localPlayerID, playerCount, players) => {
+      player.id = localPlayerID;
+      console.log(player.id);
+      console.log(players);
+      console.log(`I am ${socket.id}, the ${playerCount}th player.`);
+      // Check already connected remote players and add them to clients world
+      for (let i = 0; i < playerCount; i++) {
+        if (players[i] !== player.id) {
+          console.log(`${players[i]} needs to be added`);
+          addRemotePlayer(players[i]);
+        }
+      }
     });
   }, []);
 
@@ -62,6 +65,8 @@ export default function SocketManager() {
       </mesh>
     );
   }
+
+  // return <></>;
 
   const playerMeshes = remotePlayers.map((player) => {
     console.log(player.mesh);

@@ -1,4 +1,5 @@
 import { useBox } from '@react-three/cannon';
+import { Html } from '@react-three/drei';
 import { useEffect, useRef } from 'react';
 import { useThree, useFrame } from '@react-three/fiber';
 import { Vector3 } from 'three';
@@ -52,6 +53,19 @@ export default function PlayerBox(props: boxProps) {
       <AudioListener />
       <boxGeometry args={[1.5, 1.5, 1.5]} />
       <meshStandardMaterial color={'gold'} />
+      <Html
+        sprite
+        transform
+        distanceFactor={20}
+        position={[2, 10, 0]}
+        style={{
+          fontSize: '15px',
+          padding: '10px 18px',
+          color: 'white',
+        }}
+      >
+        <h3>User</h3>
+      </Html>
     </mesh>
   );
 }

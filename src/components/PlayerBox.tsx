@@ -53,7 +53,7 @@ export default function PlayerBox(props: boxProps) {
       <AudioListener />
       <boxGeometry args={[1.5, 1.5, 1.5]} />
       <meshStandardMaterial color={'gold'} />
-      <Html
+      {/* <Html
         sprite
         transform
         distanceFactor={20}
@@ -65,7 +65,7 @@ export default function PlayerBox(props: boxProps) {
         }}
       >
         <h3>User</h3>
-      </Html>
+      </Html> */}
     </mesh>
   );
 }

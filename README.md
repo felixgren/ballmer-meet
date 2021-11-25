@@ -4,7 +4,7 @@
 
 #### Rock out like Windows 95 is about to launch!
 
-three-fiber, socket.io, express/fastify, webRTC.
+three-fiber, socket.io, express, webRTC, nextjs, typescript
 
 ## Installation
 

@@ -27,7 +27,7 @@ const Game: React.FC = () => {
         />
         <Sky
           sunPosition={[130, 10, -175]}
-          distance={450}
+          distance={600}
           turbidity={2.5}
           rayleigh={0.2}
           mieCoefficient={0.006}

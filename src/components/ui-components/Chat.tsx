@@ -6,15 +6,13 @@ const Chat = () => {
       <div className={styles.outputBox}>
         {/* insert socket code to conditionally render the below block */}
         <div className={styles.chatMessageWrapper}>
-          <p className={styles.sentUserMessage}>User: </p>
-          <p className={styles.chatMessage}>
-            This is a placeholder message (bitch)
-          </p>
+          <p className={styles.sentUserMessage}>Placeholderman: </p>
+          <p className={styles.chatMessage}>crazy frog is amazing</p>
         </div>
         <div className={styles.chatMessageWrapper}>
-          <p className={styles.sentUserMessage}>User: </p>
+          <p className={styles.sentUserMessage}>Placeholdarium: </p>
           <p className={styles.chatMessage}>
-            Who are you calling bitch, bitch?
+            i know bro, the new album is soooo good!! :D
           </p>
         </div>
       </div>

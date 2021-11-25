@@ -1,5 +1,5 @@
 //@ts-nocheck
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect } from 'react';
 import styles from '../../styles/Forms.module.css';
 import Link from 'next/link';
 
@@ -77,7 +77,7 @@ const Forms = () => {
       </form>
 
       <div className={styles.displayInviteLink}>
-        <h1 className={styles.generatedLink}>Here is your link, bitch</h1>
+        <h1 className={styles.generatedLink}>Here is your link</h1>
         <h2 className={styles.printLink}>THIS IS THE URL</h2>
         {/* Här ska man skickas direkt till spelet */}
         <Link href="/game" passHref={true}>

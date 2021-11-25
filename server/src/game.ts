@@ -13,6 +13,8 @@ export class GameServer {
   // Stores players
   private players: { [id: string]: any } = {};
 
+  private test: string = 'hey there!';
+
   constructor() {
     this.initialize();
   }
@@ -39,16 +41,32 @@ export class GameServer {
         direction: [0, 0, 0],
       };
 
+      socket.on('clientSaysHello', () => {
+        console.log('they are trying to connect.');
+        this.io.emit('backendSaysHello', this.test, socket.id);
+      });
+
+      socket.on('initMePls', () => {
+        console.log('they are REALLY trying to connect.');
+
+        this.io.emit(
+          'initNewPlayer',
+          { id: socket.id },
+          this.io.engine.clientsCount,
+          Object.keys(this.players)
+        );
+      });
+
       // We give newly connected player their ID, playerCount and Players object
-      this.io.emit(
-        'initNewPlayer',
-        { id: socket.id },
-        this.io.engine.clientsCount,
-        Object.keys(this.players)
-        // this.players,
-        // console.log(Object.keys(this.players)),
-        // console.log(this.players)
-      );
+      // this.io.emit(
+      //   'initNewPlayer',
+      //   { id: socket.id },
+      //   this.io.engine.clientsCount,
+      //   Object.keys(this.players)
+      //   // this.players,
+      //   // console.log(Object.keys(this.players)),
+      //   // console.log(this.players)
+      // );
 
       // We give all clients notice of new player and their ID..
       socket.broadcast.emit(

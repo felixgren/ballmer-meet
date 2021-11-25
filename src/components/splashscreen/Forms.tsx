@@ -33,7 +33,7 @@ const Forms = () => {
           className={styles.submitButtonCreateRoom}
           type="submit"
           value="Join Call"
-          onClick={(e) => handleClick(4)}
+          onClick={(e) => handleClick(3)}
         />
       </div>
 
@@ -92,7 +92,7 @@ const Forms = () => {
       <form className={styles.formContainerInvited}>
         <h1 className={styles.welcome}>Welcome to call (call id)</h1>
         <h2 className={styles.instructions}>
-          Please choose a username to join call
+          Please choose a username and an invite-link to join call
         </h2>
         <label>
           <input
@@ -103,6 +103,13 @@ const Forms = () => {
             name="name"
           />
         </label>
+        <input
+          className={styles.inputField}
+          placeholder="Enter URL"
+          required
+          type="text"
+          name="name"
+        />
         {/* Här ska man skickas direkt till spelet */}
         <Link href="/game" passHref={true}>
           <input
@@ -111,28 +118,6 @@ const Forms = () => {
             value="Join call"
           />
         </Link>
-      </form>
-
-      <form className={styles.formContainerEnterUrl}>
-        <h2 className={styles.instructions}>
-          Enter an URL to join an existing call
-        </h2>
-        <label>
-          <input
-            className={styles.inputField}
-            placeholder="Enter URL"
-            required
-            type="text"
-            name="name"
-          />
-        </label>
-
-        <input
-          className={styles.submitButtonInvited}
-          type="submit"
-          value="Join call"
-          onClick={(e) => handleClick(3)}
-        />
       </form>
     </group>
   );

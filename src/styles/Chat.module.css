@@ -3,8 +3,8 @@
   right: 1vw;
   bottom: 1vh;
   z-index: 5;
-  height: 400px;
-  width: 300px;
+  height: 500px;
+  width: 400px;
   border: 1px solid #d1d2f9;
   display: flex;
   align-items: center;
@@ -15,12 +15,11 @@
   margin-bottom: 10px;
 }
 .outputBox {
-  height: 300px;
-  width: 280px;
+  height: 400px;
+  width: 350px;
   border-radius: 8px;
   background-color: #7796cb;
   color: white;
-  max-height: 300px;
   overflow: auto;
 }
 .inputBox {
@@ -65,4 +64,24 @@
 
 .chatMessage {
   padding-left: 5px;
+}
+
+@media (max-width: 1690px) {
+  .chatWrapper {
+    height: 400px;
+    width: 300px;
+  }
+  .inputField {
+    line-height: 25px;
+    width: 150px;
+    border-radius: 8px;
+    outline: none;
+  }
+  .outputBox {
+    height: 270px;
+    width: 90%;
+  }
+  .chatMessage {
+    font-size: 14px;
+  }
 }

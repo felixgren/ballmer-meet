@@ -1,26 +1,30 @@
-// @ts-nocheck
-import { usePlane, useBox, PlaneProps, BoxProps } from '@react-three/cannon';
+import {
+  usePlane,
+  PlaneProps,
+  CylinderProps,
+  useCylinder,
+} from '@react-three/cannon';
 import { useFrame } from '@react-three/fiber';
 import useStore from '@/components/helpers/store';
 import { useRef } from 'react';
 
-function CubeWorld({ args, position, rotation }: BoxProps) {
-  const [ref] = useBox(() => ({ type: 'Static', args, position }));
+function World({ args, position, rotation }: CylinderProps) {
+  const [ref] = useCylinder(() => ({ type: 'Static', args, position }));
   return (
     <group>
       <mesh {...{ position, ref }}>
-        <boxBufferGeometry attach="geometry" args={args} />
-        <meshPhongMaterial attach="material" visible={false} />
+        <cylinderGeometry args={args} />
+        <meshPhongMaterial attach="material" color="#25242b" />
       </mesh>
       <mesh {...{ rotation }} position={[0, 0.05, 0]}>
-        <planeGeometry attach="geometry" args={[100, 100]} />
-        <meshPhongMaterial attach="material" color="#f8dff6" />
+        <circleGeometry attach="geometry" args={[60, 128]} />
+        <meshPhongMaterial attach="material" color="#403e4c" />
       </mesh>
     </group>
   );
 }
 
-function FallPlane({ onCollide }: PlaneProps) {
+function FallTrigger({ onCollide }: PlaneProps) {
   const [ref] = usePlane(() => ({
     type: 'Static',
     onCollide,
@@ -29,7 +33,7 @@ function FallPlane({ onCollide }: PlaneProps) {
   }));
   return (
     <mesh ref={ref}>
-      <planeBufferGeometry args={[200, 200]} />
+      <planeBufferGeometry args={[250, 250]} />
       <meshPhongMaterial attach="material" color="red" visible={false} />
     </mesh>
   );
@@ -61,12 +65,12 @@ export default function Map() {
 
   return (
     <group>
-      <CubeWorld
-        args={[100, 100, 100]}
+      <World
+        args={[65, 60, 100, 128]}
         position={[0, -50, 0]}
         rotation={[-Math.PI / 2, 0, 0]}
       />
-      <FallPlane
+      <FallTrigger
         onCollide={(e) => {
           respawnPlayer.current = e;
         }}

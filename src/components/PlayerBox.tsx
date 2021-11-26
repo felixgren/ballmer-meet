@@ -23,15 +23,22 @@ export default function PlayerBox(props: boxProps) {
     type: 'Dynamic',
   }));
   const velocity = useRef<number[]>([0, 0, 0]);
+  const position = useRef<number[]>([0, 0, 0]);
   useEffect(() => {
     api.velocity.subscribe((v) => (velocity.current = v));
   }, [api.velocity]);
+
+  useEffect(() => {
+    api.position.subscribe((v) => (position.current = v));
+  }, [api.position]);
+
   useEffect(() => {
     // console.log('Set boxRef BoxApi states');
     useStore.setState({ boxRef: ref, boxAPI: api });
   }, [ref, api]);
 
   useFrame(() => {
+    console.log(position.current);
     frontBackVector.set(0, 0, (keyBack ? 1 : 0) - (keyForward ? 1 : 0));
     sidesVector.set((keyLeft ? 1 : 0) - (keyRight ? 1 : 0), 0, 0);
 

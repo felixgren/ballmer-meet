@@ -1,39 +1,54 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useRef, useState } from 'react';
 import { useFrame } from '@react-three/fiber';
-import { Vector3 } from 'three';
+import { Quaternion, Vector3 } from 'three';
 import useStore from '@/components/helpers/store';
+import { Html } from '@react-three/drei';
 
-const playerPosition = new Vector3();
-const playerRotation = new Vector3();
-
-type boxProps = JSX.IntrinsicElements['mesh'];
-
-export default function RemotePlayer(props: boxProps) {
-  // JESSE, WHAT ARE YOU DOING?
-  // Mr. White I'm updating this mesh.
-  // JESSE ARE YOU UPDATING THIS MESH USING STATE?
-  // Yeaah, I'm sending them down with props.
-  // JESSE, We never deal with transient updates like this, use refs!
-  // Ok Mr. White, we always want to directly mutate our meshes.
-
-  const player = useRef<any>();
-
-  useEffect(() => {
-    // potential states here...
-  }, []);
+export default function RemotePlayer(id: any, ...props: any) {
+  const playerPosition = new Vector3();
+  const playerRotation = new Quaternion();
+  const playerRef = useRef<any>();
+  const socket = useStore((state) => state.socket);
 
   useFrame(() => {
-    // update position and rotation here
-    // player.current.position = playerPosition;
-    // player.current.rotation = playerRotation;
+    playerRef.current.position.copy(playerPosition);
+    playerRef.current.quaternion.copy(playerRotation);
   });
 
-  const x = Math.floor(Math.random() * 20) - 10;
+  useEffect(() => {
+    //@ts-ignore
+    socket.on('playerPositions', (remotePlayers) => {
+      Object.keys(remotePlayers).forEach((remotePlayer) => {
+        if (remotePlayer === id.id) {
+          playerPosition.fromArray(remotePlayers[remotePlayer].position);
+          playerRotation.fromArray(remotePlayers[remotePlayer].direction);
+        }
+      });
+    });
+  }, [socket]);
+
+  const randomColor = Math.floor(Math.random() * 16777215).toString(16);
+  const color = `#${randomColor}`;
 
   return (
-    <mesh {...props} ref={player} position={[x, 5, x]}>
+    <mesh {...props} ref={playerRef}>
       <boxGeometry args={[1.5, 1.5, 1.5]} />
-      <meshStandardMaterial color={'gold'} />
+      <meshStandardMaterial color={color} />
+      <Html
+        name="html"
+        transform
+        center
+        distanceFactor={20}
+        position={[0, 5, 0]}
+        style={{
+          fontSize: '14px',
+          padding: '10px 18px',
+          color: 'white',
+        }}
+      >
+        <h1>{id.id}</h1>
+      </Html>
     </mesh>
   );
 }

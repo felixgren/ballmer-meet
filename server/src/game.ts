@@ -13,6 +13,8 @@ export class GameServer {
   // Stores players
   private players: { [id: string]: any } = {};
 
+  private test: string = 'hey there!';
+
   constructor() {
     this.initialize();
   }
@@ -27,10 +29,18 @@ export class GameServer {
       },
     });
     this.handleSocketEvents();
+    // this.playerData();
   }
 
   private handleSocketEvents(): void {
+    // emit this.io.sockets.emit('playerPositions', this.players); every 16ms
+
+    setInterval(() => {
+      this.io.sockets.emit('playerPositions', this.players);
+    }, 16);
+
     this.io.on('connection', (socket) => {
+      // socket.on('initRequest', () => {
       console.log(`User ${socket.id} connected`);
 
       // Add to server players object
@@ -39,20 +49,25 @@ export class GameServer {
         direction: [0, 0, 0],
       };
 
-      // We give newly connected player their ID, playerCount and Players object
-      this.io.emit(
-        'initNewPlayer',
-        { id: socket.id },
-        this.io.engine.clientsCount,
-        Object.keys(this.players)
-        // this.players,
-        // console.log(Object.keys(this.players)),
-        // console.log(this.players)
-      );
+      socket.on('clientSaysHello', () => {
+        console.log('they are trying to connect.');
+        this.io.emit('backendSaysHello', this.test, socket.id);
+      });
+
+      socket.on('initRequest', () => {
+        console.log(`Sending initResponse to ${socket.id}`);
+        // We give newly connected player their ID, playerCount and Players object
+        this.io.emit(
+          'initResponse',
+          { id: socket.id },
+          this.io.engine.clientsCount,
+          Object.keys(this.players)
+        );
+      });
 
       // We give all clients notice of new player and their ID..
       socket.broadcast.emit(
-        'player connect',
+        'player-connect',
         socket.id,
         this.io.engine.clientsCount
       );
@@ -61,7 +76,7 @@ export class GameServer {
       socket.on('disconnect', () => {
         console.log(`User ${socket.id} disconnected`);
         this.io.emit(
-          'player disconnect',
+          'player-disconnect',
           socket.id,
           this.io.engine.clientsCount
         );
@@ -81,6 +96,16 @@ export class GameServer {
           this.players[socket.id].direction = direction;
         }
       });
+
+      // socket.on('updateClientPos', (position) => {
+      //   if (this.players[socket.id]) {
+      //     this.players[socket.id].position = position;
+
+      //   }
+      // });
+
+      console.log(this.players);
+      // });
     });
   }
 

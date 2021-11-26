@@ -1,16 +1,17 @@
+export {};
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import styles from '../styles/Socket.module.css';
 import io from 'socket.io-client';
 
 const Socket: NextPage = () => {
-  console.log('Socket Time...');
-  const socket = io('http://localhost:5000');
+  // console.log('Socket Time...');
+  // const socket = io('http://localhost:5000');
 
-  socket &&
-    socket.on('connect', () => {
-      console.log(`Socket connection! ID: ${socket.id}`);
-    });
+  // socket &&
+  //   socket.on('connect', () => {
+  //     console.log(`Socket connection! ID: ${socket.id}`);
+  //   });
 
   return (
     <div className={styles.container}>

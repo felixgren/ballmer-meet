@@ -1,8 +1,9 @@
+// @ts-nocheck
 import { useBox } from '@react-three/cannon';
 import { Html } from '@react-three/drei';
 import { useEffect, useRef } from 'react';
 import { useThree, useFrame } from '@react-three/fiber';
-import { Vector3 } from 'three';
+import { Quaternion, Vector3 } from 'three';
 import { useKeysToMove } from './hooks/userKeyboard';
 import AudioListener from '@/components/utils/AudioListener';
 import useStore from '@/components/helpers/store';
@@ -14,6 +15,7 @@ const sidesVector = new Vector3(1, 0, 0);
 type boxProps = JSX.IntrinsicElements['mesh'];
 
 export default function PlayerBox(props: boxProps) {
+  const socket = useStore((state) => state.socket);
   const { camera } = useThree();
   const { keyForward, keyBack, keyLeft, keyRight, keyJump } = useKeysToMove();
   const [ref, api] = useBox(() => ({
@@ -23,9 +25,30 @@ export default function PlayerBox(props: boxProps) {
     type: 'Dynamic',
   }));
   const velocity = useRef<number[]>([0, 0, 0]);
+  const positionRef = useRef<number[]>([0, 0, 0]);
+  const quaternionRef = useRef<number[]>([0, 0, 0]);
+  const testQuart = new Quaternion();
+
+  const testQuart2 = testQuart.toArray();
+
+  const mutation = useStore((state) => state.mutation);
+  const { ray } = mutation;
+
+  // Velocity Ref
   useEffect(() => {
     api.velocity.subscribe((v) => (velocity.current = v));
   }, [api.velocity]);
+
+  // Position Ref
+  useEffect(() => {
+    api.position.subscribe((v) => (positionRef.current = v));
+  }, [api.position]);
+
+  // Quaternion Ref
+  useEffect(() => {
+    api.quaternion.subscribe((v) => (quaternionRef.current = v));
+  }, [api.quaternion]);
+
   useEffect(() => {
     // console.log('Set boxRef BoxApi states');
     useStore.setState({ boxRef: ref, boxAPI: api });
@@ -46,6 +69,8 @@ export default function PlayerBox(props: boxProps) {
     if (keyJump && Math.abs(parseInt(velocity.current[1].toFixed(2))) < 0.05) {
       api.velocity.set(velocity.current[0], 8, velocity.current[2]);
     }
+
+    socket.emit('updateClientPos', positionRef.current, quaternionRef.current);
   });
 
   return (

@@ -5,7 +5,7 @@ import io from 'socket.io-client';
 import RemotePlayer from '@/components/RemotePlayer';
 import { useEffect, useState } from 'react';
 
-const socket = io('http://localhost:5000'); // haha you can't be in component with updating state...
+// const socket = io('http://localhost:5000'); // haha you can't be in component with updating state...
 
 export default function InitSocket() {
   console.log('init sockets');

@@ -9,19 +9,9 @@ export default function SocketManager() {
   const [remotePlayers, setRemotePlayer] = useState([]);
   const [remoteMeshes, setMeshes] = useState([]);
 
-  const [joined, setJoined] = useState(false);
-  // const handleInviteAccepted = useCallback(() => {
-  //   setJoined(true);
-  // }, []);
-
   useEffect(() => {
     socket.emit('initRequest', () => {});
     socket.on('initResponse', (localPlayerID, playerCount, players) => {
-      if (!joined) {
-        console.log('hello');
-      }
-      // handleInviteAccepted();
-      setJoined(true);
       if (localPlayerID.id == socket.id) {
         console.log(`I am ${socket.id}, the ${playerCount}th player.`);
         // Check already connected remote players and add them to clients world
@@ -34,12 +24,6 @@ export default function SocketManager() {
       } else {
         console.log('nope!');
       }
-
-      // return () => {
-      //   // before the component is destroyed
-      //   // unbind all event handlers used in this component
-      //   socket.off('initResponse', handleInviteAccepted);
-      // };
     });
   }, [socket]);
 

@@ -1,42 +1,47 @@
 //@ts-nocheck
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import useStore from '@/components/helpers/store';
 
 export default function SocketManager() {
   console.log('SocketManager mounted');
   const socket = useStore((state) => state.socket);
-  // const player = {};
 
-  // const [player, setPlayer] = useState();
   const [remotePlayers, setRemotePlayer] = useState([]);
   const [remoteMeshes, setMeshes] = useState([]);
 
-  // useEffect(() => {
-  //   console.log('the player is now...!');
-  //   console.log(player);
-  //   console.log(socket.id);
-  // }, [player, socket]);
+  const [joined, setJoined] = useState(false);
+  // const handleInviteAccepted = useCallback(() => {
+  //   setJoined(true);
+  // }, []);
 
   useEffect(() => {
     socket.emit('initRequest', () => {});
     socket.on('initResponse', (localPlayerID, playerCount, players) => {
-      // setPlayer(localPlayerID);
-
-      // console.log(player.id);
-      // console.log(players);
-      console.log(`I am ${socket.id}, the ${playerCount}th player.`);
-      // Check already connected remote players and add them to clients world
-      for (let i = 0; i < playerCount; i++) {
-        if (players[i] !== socket.id) {
-          console.log(`${players[i]} needs to be added`);
-          console.log(`${socket.id} is me!`);
-          addRemotePlayer(players[i]);
-        } else if (socket.id === players[i]) {
-          console.log(`${socket.id} is local player`);
-        }
+      if (!joined) {
+        console.log('hello');
       }
+      // handleInviteAccepted();
+      setJoined(true);
+      if (localPlayerID.id == socket.id) {
+        console.log(`I am ${socket.id}, the ${playerCount}th player.`);
+        // Check already connected remote players and add them to clients world
+        for (let i = 0; i < playerCount; i++) {
+          if (players[i] !== socket.id) {
+            console.log(`${players[i]} needs to be added`);
+            addRemotePlayer(players[i]);
+          }
+        }
+      } else {
+        console.log('nope!');
+      }
+
+      // return () => {
+      //   // before the component is destroyed
+      //   // unbind all event handlers used in this component
+      //   socket.off('initResponse', handleInviteAccepted);
+      // };
     });
-  }, []);
+  }, [socket]);
 
   useEffect(() => {
     socket.on('player-connect', (id, playerCount) => {

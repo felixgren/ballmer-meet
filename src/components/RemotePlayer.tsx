@@ -11,6 +11,7 @@ type boxProps = JSX.IntrinsicElements['mesh'];
 
 export default function RemotePlayer(id: any, ...props: any) {
   const player = useRef<any>();
+  const socket = useStore((state) => state.socket);
 
   useEffect(() => {
     // potential states here...
@@ -23,6 +24,25 @@ export default function RemotePlayer(id: any, ...props: any) {
   });
 
   const x = Math.floor(Math.random() * 20) - 10;
+
+  useEffect(() => {
+    //@ts-ignore
+    socket.on('playerPositions', (remotePlayers) => {
+      // console.log(players);
+      // console.log('hehehe');
+
+      Object.keys(remotePlayers).forEach((remotePlayer) => {
+        // console.log(player);
+        if (remotePlayer === id.id) {
+          // console.log('found player');
+          // console.log(`${player} ${id.id}`);
+        }
+      });
+      // console.log(id.id);
+      //@ts-ignore
+      //  players.filter((player) => player.id !== id);
+    });
+  }, [socket]);
 
   return (
     <mesh {...props} ref={player} position={[x, 5, x]}>

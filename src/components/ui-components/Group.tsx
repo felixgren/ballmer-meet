@@ -1,3 +1,4 @@
+// @ts-nocheck
 import Chat from '@/components/ui-components/Chat';
 import Webcams from '@/components/ui-components/Webcams';
 import ControlButtons from '@/components/ui-components/ControlButtons';
@@ -12,16 +13,16 @@ const UI = () => {
 
   const showUI = useStore((state) => state.showUI);
 
-  if (!showUI) {
-    // pause voice & video
-    navigator.mediaDevices
-      .getUserMedia({ video: true, audio: true })
-      .then((stream) => {
-        stream.getTracks().forEach((track) => {
-          track.stop();
-        });
-      });
-  }
+  // if (!showUI) {
+  //   // pause voice & video
+  //   navigator.mediaDevices
+  //     .getUserMedia({ video: true, audio: true })
+  //     .then((stream) => {
+  //       stream.getTracks().forEach((track) => {
+  //         track.stop();
+  //       });
+  //     });
+  // }
 
   return (
     <>

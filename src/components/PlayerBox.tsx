@@ -83,7 +83,7 @@ export default function PlayerBox(props: boxProps) {
       api.velocity.set(velocity.current[0], 8, velocity.current[2]);
     }
 
-    socket.emit('updateClientPos', positionRef.current);
+    socket.emit('updateClientPos', positionRef.current, quaternionRef.current);
   });
 
   return (

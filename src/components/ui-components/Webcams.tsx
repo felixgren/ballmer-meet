@@ -32,6 +32,16 @@ const Webcams = () => {
         <video autoPlay className={styles.webcams} id="local-video"></video>
         {/* <video autoPlay className={styles.webcams} id="remote-video"></video> */}
       </div>
+
+      <div className="video-container">
+        <p className={styles.username}>User joining...</p>
+        <video autoPlay className={styles.webcams}></video>
+      </div>
+
+      <div className="video-container">
+        <p className={styles.username}>User joining...</p>
+        <video autoPlay className={styles.webcams}></video>
+      </div>
     </div>
   );
 };

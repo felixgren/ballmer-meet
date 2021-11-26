@@ -11,6 +11,18 @@ const UI = () => {
   // }, [showUI]);
 
   const showUI = useStore((state) => state.showUI);
+
+  if (!showUI) {
+    // pause voice & video
+    navigator.mediaDevices
+      .getUserMedia({ video: true, audio: true })
+      .then((stream) => {
+        stream.getTracks().forEach((track) => {
+          track.stop();
+        });
+      });
+  }
+
   return (
     <>
       {<ControlButtons />}

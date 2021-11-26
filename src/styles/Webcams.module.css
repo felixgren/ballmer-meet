@@ -1,5 +1,6 @@
 .webcams {
-  height: 180px;
+  height: 170px;
+  padding: 6px;
   width: 220px;
   min-width: 220px;
   margin-left: 8px;
@@ -9,7 +10,7 @@
 .username {
   color: #d1d2f9;
   font-weight: bold;
-  padding: 10px 12px;
+  padding: 10px 20px;
   margin: 0;
   position: absolute;
 }

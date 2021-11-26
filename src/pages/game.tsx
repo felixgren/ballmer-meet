@@ -16,15 +16,15 @@ const Game: React.FC = () => {
       <UI />
       <Canvas camera={{ position: [0, 60, 120], fov: 50 }}>
         <OrbitControls
-        // maxPolarAngle={1.1}
-        // minPolarAngle={0.8}
-        // minDistance={50}
-        // maxDistance={134.16}
-        // maxAzimuthAngle={Math.PI / 2}
-        // minAzimuthAngle={-Math.PI / 2}
-        // rotateSpeed={0.3}
-        // enablePan={false}
-        // enableRotate={false}
+          maxPolarAngle={1.1}
+          minPolarAngle={0.8}
+          minDistance={50}
+          maxDistance={134.16}
+          maxAzimuthAngle={Math.PI / 2}
+          minAzimuthAngle={-Math.PI / 2}
+          rotateSpeed={0.3}
+          enablePan={false}
+          enableRotate={false}
         />
         <Sky
           sunPosition={[130, 10, -175]}

@@ -83,12 +83,19 @@ export class GameServer {
       });
 
       // Data every client uploads
-      socket.on('updateClientPos', (position, direction) => {
+      // socket.on('updateClientPos', (position, direction) => {
+      //   if (this.players[socket.id]) {
+      //     this.players[socket.id].position = position;
+      //     this.players[socket.id].direction = direction;
+      //   }
+      // });
+
+      socket.on('updateClientPos', (position) => {
         if (this.players[socket.id]) {
           this.players[socket.id].position = position;
-          this.players[socket.id].direction = direction;
         }
       });
+
       console.log(this.players);
       // });
     });

@@ -2,7 +2,7 @@
 .toggleMicrophone {
   height: 40px;
   width: 40px;
-  margin-right: 30px;
+  margin-right: 14px;
   margin-top: 5px;
   background-color: #d1d2f9;
   border-radius: 50%;
@@ -22,8 +22,9 @@
 .btnWrapper {
   margin-bottom: 10px;
   position: absolute;
-  bottom: 2vh;
-  left: 12vw;
+  bottom: 1.8vh;
+  display: flex;
+  left: 11vw;
   z-index: 20;
 }
 @media (max-width: 1291px) {

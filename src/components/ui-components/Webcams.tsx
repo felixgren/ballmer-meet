@@ -8,6 +8,12 @@ const Webcams = () => {
         <div className={styles.webcams}>
           <p className={styles.username}>User</p>
         </div>
+        <div className={styles.webcams}>
+          <p className={styles.username}>User</p>
+        </div>
+        <div className={styles.webcams}>
+          <p className={styles.username}>User</p>
+        </div>
       </div>
     </div>
   );

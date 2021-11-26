@@ -1,14 +1,13 @@
 .chatWrapper {
   position: absolute;
-  right: 1vw;
+  right: 2vw;
   bottom: 1vh;
   z-index: 5;
   height: 500px;
   width: 400px;
-  border: 1px solid #d1d2f9;
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: flex-start;
   flex-direction: column;
   border-radius: 8px;
   background-color: #576490;
@@ -18,48 +17,78 @@
   height: 400px;
   width: 350px;
   border-radius: 8px;
-  background-color: #7796cb;
   color: white;
   overflow: auto;
 }
 .inputBox {
   display: flex;
   flex-direction: row;
+  width: 92%;
+  border-top: 1px solid #21273b;
+  margin-top: 12px;
+  padding-top: 10px;
 }
 .inputField {
   line-height: 25px;
-  width: 200px;
-  border-radius: 8px;
+  width: 276px;
+  border-radius: 20px;
   outline: none;
-  padding: 3px;
-  margin-right: 15px;
+  border: none;
+  background: #343c59;
+  height: 40px;
+  padding-left: 16px;
+  color: white;
 }
 .inputField:active {
-  transform: scale(1.05);
+  transform: scale(1.03);
+}
+.inputField::placeholder {
+  color: white;
+  opacity: 0.6;
+  letter-spacing: 0.03em;
 }
 
 .submitBtn {
-  background-color: #d1d2f9;
-  border-radius: 8px;
-  height: 30px;
-  width: 60px;
+  background-color: #576490;
+  border-radius: 20px;
+  height: 34px;
+  width: 70px;
+  right: 16px;
+  letter-spacing: 0.03em;
+  margin-top: 3px;
+  color: white;
+  position: absolute;
+  transition: 0.2s;
   border: none;
   outline: none;
 }
 
 .submitBtn:hover {
-  transform: scale(1.05);
+  background: #0f121c;
   cursor: pointer;
 }
+
+.roomName {
+  font-weight: bold;
+  margin: 0;
+  padding: 6px 0 4px;
+  color: #d1d2f9;
+}
+
 .chatMessageWrapper {
   display: flex;
   flex-direction: row;
-  padding-left: 5px;
+  padding: 0 12px;
+  margin: 8px 0;
+  background: #343c59;
+  border-radius: 8px;
+  border-bottom-left-radius: 0;
 }
 .sentUserMessage {
   font-weight: bold;
-  padding-right: 5px;
+  padding-right: 6px;
   color: #d1d2f9;
+  margin-top: 12px;
 }
 
 .chatMessage {
@@ -71,15 +100,10 @@
     height: 400px;
     width: 300px;
   }
-  .inputField {
-    line-height: 25px;
-    width: 150px;
-    border-radius: 8px;
-    outline: none;
-  }
   .outputBox {
-    height: 270px;
-    width: 90%;
+    height: 326px;
+    width: 92%;
+    padding-top: 12px;
   }
   .chatMessage {
     font-size: 14px;

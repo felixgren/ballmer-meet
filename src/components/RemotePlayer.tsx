@@ -31,11 +31,13 @@ export default function RemotePlayer(id: any, ...props: any) {
       <Html
         name="html"
         transform
+        center
         distanceFactor={20}
-        position={[2, 10, 0]}
+        position={[0, 5, 0]}
         style={{
-          fontSize: '35px',
+          fontSize: '14px',
           padding: '10px 18px',
+          color: 'white',
         }}
       >
         <h1>{id.id}</h1>

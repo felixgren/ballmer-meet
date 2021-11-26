@@ -11,6 +11,15 @@ export default function SocketManager() {
   const [remotePlayers, setRemotePlayer] = useState([]);
   const [remoteMeshes, setMeshes] = useState([]);
 
+  // useStore.setState({ remotePlayers:  });
+
+  // useStore.subscribe()
+
+  // const unsub1 = useStore.subscribe(console.log);
+
+  //   useFrame(() => (ref.current.position.x = api.getState().x))
+  // return <mesh ref={ref} />
+
   useEffect(() => {
     socket.emit('initRequest', () => {});
     socket.on('initResponse', (localPlayerID, playerCount, players) => {

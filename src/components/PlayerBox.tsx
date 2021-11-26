@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { useBox } from '@react-three/cannon';
 import { Html } from '@react-three/drei';
 import { useEffect, useRef } from 'react';
@@ -23,14 +24,42 @@ export default function PlayerBox(props: boxProps) {
     type: 'Dynamic',
   }));
   const velocity = useRef<number[]>([0, 0, 0]);
-  const position = useRef<number[]>([0, 0, 0]);
+  const positionRef = useRef<number[]>([0, 0, 0]);
+
+  const mutation = useStore((state) => state.mutation);
+  const { ray } = mutation;
+
   useEffect(() => {
     api.velocity.subscribe((v) => (velocity.current = v));
   }, [api.velocity]);
 
+  // useEffect(() => {
+  //   api.position.subscribe((v) => (position.current = v));
+  // }, [api.position]);
+
   useEffect(() => {
-    api.position.subscribe((v) => (position.current = v));
+    api.position.subscribe((v) => (positionRef.current = v));
   }, [api.position]);
+
+  // useEffect(
+  //   () =>
+  //     api.subscribe(
+  //       (x) => (ref.current.position.x = x),
+  //       (state) => state.x
+  //     ),
+  //   []
+  // );
+
+  //   const ref = useRef()
+  // useEffect(
+  //   () =>
+  //     api.subscribe(
+  //       (x) => (ref.current.position.x = x),
+  //       (state) => state.x
+  //     ),
+  //   []
+  // )
+  // return <mesh ref={ref} />
 
   useEffect(() => {
     // console.log('Set boxRef BoxApi states');
@@ -38,7 +67,10 @@ export default function PlayerBox(props: boxProps) {
   }, [ref, api]);
 
   useFrame(() => {
-    console.log(position.current);
+    console.log(positionRef.current);
+    //@ts-ignore
+    ray.origin.copy(positionRef.current);
+
     frontBackVector.set(0, 0, (keyBack ? 1 : 0) - (keyForward ? 1 : 0));
     sidesVector.set((keyLeft ? 1 : 0) - (keyRight ? 1 : 0), 0, 0);
 

@@ -14,6 +14,11 @@
   color: white;
 }
 
+.selectCreateOrJoin img {
+  padding: 20px;
+  width: 630px;
+}
+
 .formContainerInvited,
 .formContainerCreateRoom,
 .displayInviteLink,
@@ -27,13 +32,13 @@
   color: #ffffff;
   background-color: #21273b;
   border-radius: 8px;
-  width: 120px;
+  width: 180px;
   font-weight: bold;
   font-size: 15px;
   margin: 10px;
   border: none;
   letter-spacing: 1px;
-  transition: 400ms ease-in-out;
+  transition: 200ms ease-in-out;
 }
 
 .submitButtonInvited:hover,
@@ -79,7 +84,10 @@
 }
 .instructions {
   color: #ffffff;
-  margin-bottom: 75px;
+  margin: 30px 0;
+  max-width: 480px;
+  line-height: 1.4em;
+  text-align: center;
   font-size: 29px;
 }
 

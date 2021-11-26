@@ -20,6 +20,10 @@ const Forms = () => {
     <group ref={sectionRef}>
       <div className={styles.selectCreateOrJoin}>
         <h1 className={styles.welcome}>Welcome to [Ballmer Meet]</h1>
+        <img
+          src="https://media4.giphy.com/media/l3q2zbskZp2j8wniE/giphy-downsized-large.gif"
+          alt="ballmer meet gif"
+        />
         <h2 className={styles.instructions}>
           Would you like to create a new call, or join an existing one?
         </h2>

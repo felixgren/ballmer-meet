@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 //@ts-nocheck
 import { useEffect, useState } from 'react';
 import useStore from '@/components/helpers/store';
@@ -6,26 +5,34 @@ import useStore from '@/components/helpers/store';
 export default function SocketManager() {
   console.log('SocketManager mounted');
   const socket = useStore((state) => state.socket);
-  const player = {};
+  // const player = {};
 
+  // const [player, setPlayer] = useState();
   const [remotePlayers, setRemotePlayer] = useState([]);
   const [remoteMeshes, setMeshes] = useState([]);
+
+  // useEffect(() => {
+  //   console.log('the player is now...!');
+  //   console.log(player);
+  //   console.log(socket.id);
+  // }, [player, socket]);
 
   useEffect(() => {
     socket.emit('initRequest', () => {});
     socket.on('initResponse', (localPlayerID, playerCount, players) => {
-      player = localPlayerID;
-      console.log(player.id);
-      console.log(players);
+      // setPlayer(localPlayerID);
+
+      // console.log(player.id);
+      // console.log(players);
       console.log(`I am ${socket.id}, the ${playerCount}th player.`);
       // Check already connected remote players and add them to clients world
       for (let i = 0; i < playerCount; i++) {
-        if (players[i] !== player.id) {
+        if (players[i] !== socket.id) {
           console.log(`${players[i]} needs to be added`);
-          console.log(`${player.id} is me!`);
+          console.log(`${socket.id} is me!`);
           addRemotePlayer(players[i]);
-        } else if (player.id === players[i]) {
-          console.log(`${player.id} is local player`);
+        } else if (socket.id === players[i]) {
+          console.log(`${socket.id} is local player`);
         }
       }
     });
@@ -76,7 +83,7 @@ export default function SocketManager() {
   useEffect(() => {
     setMeshes(
       remotePlayers.map((player) => {
-        console.log(player.mesh);
+        console.log(`adding mesh: ${player.id}`);
         return player.mesh;
       })
     );

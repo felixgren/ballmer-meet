@@ -9,7 +9,7 @@ const Chat = () => {
         {/* insert socket code to conditionally render the below block */}
         <div className={styles.chatMessageWrapper}>
           <p className={styles.sentUserMessage}>User </p>
-          <p className={styles.chatMessage}>This is a placeholder message</p>
+          <p className={styles.chatMessage}>Welcome to Ballmer room</p>
         </div>
         <div className={styles.chatMessageWrapper}>
           <p className={styles.sentUserMessage}>User </p>

@@ -35,14 +35,14 @@ export default function JukeBoxFactory(props: boxProps) {
   return (
     <group>
       <JukeBox
-        position={[30, 5, -40]}
+        position={[1, 5, 55]}
         args={[3, 6, 3]}
         color={'deepskyblue'}
         name={'BALLMER BLASTER'}
         tune={'audio/developers.mp3'}
       />
       <JukeBox
-        position={[0, 60, -55]}
+        position={[1, 5, -55]}
         args={[6, 6, 6]}
         color={'green'}
         name={'Banger'}

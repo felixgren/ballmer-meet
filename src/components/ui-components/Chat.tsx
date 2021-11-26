@@ -8,12 +8,14 @@ const Chat = () => {
 
         {/* insert socket code to conditionally render the below block */}
         <div className={styles.chatMessageWrapper}>
-          <p className={styles.sentUserMessage}>User </p>
-          <p className={styles.chatMessage}>Welcome to Ballmer room</p>
+          <p className={styles.sentUserMessage}>Userman </p>
+          <p className={styles.chatMessage}>
+            BRO!!! have you heard the new crazy frog??
+          </p>
         </div>
         <div className={styles.chatMessageWrapper}>
-          <p className={styles.sentUserMessage}>User </p>
-          <p className={styles.chatMessage}>Bitconneeeeeeeeect</p>
+          <p className={styles.sentUserMessage}>Userbro </p>
+          <p className={styles.chatMessage}>word!! CF is da bomb!!</p>
         </div>
       </div>
       <div className={styles.inputBox}>

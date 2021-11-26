@@ -1,22 +1,26 @@
 .webcams {
-  height: 180px;
+  height: 170px;
+  padding: 6px;
   width: 220px;
-  margin-left: 10px;
-  background-color: #7796cb;
-  border: 1px solid #d1d2f9;
+  min-width: 220px;
+  margin-left: 8px;
+  border-radius: 6px;
+  background-color: #343c59;
 }
 .username {
-  color: rgb(0, 0, 0);
-  background-color: #d1d2f9;
-  width: 70px;
+  color: #d1d2f9;
+  font-weight: bold;
+  padding: 10px 20px;
+  margin: 0;
+  position: absolute;
 }
 
 .webcamsWrapper {
+  overflow: auto;
   position: absolute;
   z-index: 5;
   bottom: 1vh;
   left: 30%;
-  border: 1px solid #d1d2f9;
   background-color: #576490;
   height: 230px;
   width: 900px;
@@ -28,11 +32,10 @@
   align-items: center;
   justify-content: center;
   flex-direction: row;
-  overflow: auto;
+  padding: 0 10px;
 }
 
 /* Media queries */
-
 @media (max-width: 2001px) {
   .webcamsWrapper {
     left: 25vw;
@@ -46,20 +49,15 @@
 
 @media (max-width: 1690px) {
   .webcamsWrapper {
-    width: 750px;
+    width: 830px;
     height: 200px;
-    left: 23vw;
+    left: 19vw;
   }
 }
 
 @media (max-width: 1450px) {
   .webcamsWrapper {
-    left: 20vw;
-  }
-}
-
-@media (max-width: 1315px) {
-  .webcamsWrapper {
+    width: 750px;
     left: 17vw;
   }
 }

@@ -14,6 +14,11 @@
   color: white;
 }
 
+.selectCreateOrJoin img {
+  padding: 20px;
+  width: 630px;
+}
+
 .formContainerInvited,
 .formContainerCreateRoom,
 .displayInviteLink,
@@ -25,15 +30,15 @@
 .submitButtonCreateRoom {
   padding: 15px;
   color: #ffffff;
-  background-color: #305464;
+  background-color: #21273b;
   border-radius: 8px;
-  width: 120px;
+  width: 180px;
   font-weight: bold;
   font-size: 15px;
   margin: 10px;
   border: none;
   letter-spacing: 1px;
-  transition: 400ms ease-in-out;
+  transition: 200ms ease-in-out;
 }
 
 .submitButtonInvited:hover,
@@ -47,6 +52,7 @@
   display: flex;
   line-height: 25px;
   width: 250px;
+  height: 40px;
   border-radius: 8px;
   border: none;
   outline: none;
@@ -79,7 +85,10 @@
 }
 .instructions {
   color: #ffffff;
-  margin-bottom: 75px;
+  margin: 30px 0;
+  max-width: 480px;
+  line-height: 1.4em;
+  text-align: center;
   font-size: 29px;
 }
 
@@ -94,6 +103,7 @@
   display: flex;
   line-height: 25px;
   width: 250px;
+  height: 40px;
   border-radius: 8px;
   border: none;
   outline: none;

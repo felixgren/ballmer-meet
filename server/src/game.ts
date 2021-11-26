@@ -48,7 +48,7 @@ export class GameServer {
       });
 
       socket.on('initRequest', () => {
-        console.log(`Init Request from ${socket.id}`);
+        console.log(`Sending initResponse to ${socket.id}`);
         // We give newly connected player their ID, playerCount and Players object
         this.io.emit(
           'initResponse',

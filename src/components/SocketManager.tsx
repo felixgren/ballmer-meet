@@ -1,9 +1,10 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 //@ts-nocheck
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState } from 'react';
 import useStore from '@/components/helpers/store';
 
 export default function SocketManager() {
-  console.log('SocketManager mounted');
+  console.log('SocketManager component load/update');
   const socket = useStore((state) => state.socket);
 
   const [remotePlayers, setRemotePlayer] = useState([]);
@@ -22,21 +23,23 @@ export default function SocketManager() {
           }
         }
       } else {
-        console.log('nope!');
+        // console.log('nope!');
       }
     });
   }, [socket]);
 
   useEffect(() => {
     socket.on('player-connect', (id, playerCount) => {
-      console.log(`player connect, now ${playerCount}`);
+      console.log(
+        `${id} player connected. There are now ${playerCount} users!`
+      );
       addRemotePlayer(id);
     });
   }, [socket]);
 
   useEffect(() => {
     socket.on('player-disconnect', (id, playerCount) => {
-      console.log(`player disconnect, now ${playerCount}`);
+      console.log(`${id} disconnected. There are now ${playerCount} users!`);
       removeRemotePlayer(id);
     });
   }, [socket]);
@@ -50,7 +53,7 @@ export default function SocketManager() {
   }
 
   function removeRemotePlayer(id) {
-    console.log(`Remove player: ${id}`);
+    console.log(`Removing player: ${id}`);
     setRemotePlayer((remotePlayers) => [
       ...remotePlayers.filter((player) => player.id !== id),
     ]);
@@ -67,12 +70,10 @@ export default function SocketManager() {
     );
   }
 
-  // return <></>;
-
   useEffect(() => {
     setMeshes(
       remotePlayers.map((player) => {
-        console.log(`adding mesh: ${player.id}`);
+        // console.log(`adding mesh: ${player.id}`);
         return player.mesh;
       })
     );

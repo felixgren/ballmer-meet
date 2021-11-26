@@ -2,20 +2,14 @@ import { useEffect, useRef, useState } from 'react';
 import { useFrame } from '@react-three/fiber';
 import { Vector3 } from 'three';
 import useStore from '@/components/helpers/store';
+import { Html } from '@react-three/drei';
 
 const playerPosition = new Vector3();
 const playerRotation = new Vector3();
 
 type boxProps = JSX.IntrinsicElements['mesh'];
 
-export default function RemotePlayer(props: boxProps) {
-  // JESSE, WHAT ARE YOU DOING?
-  // Mr. White I'm updating this mesh.
-  // JESSE ARE YOU UPDATING THIS MESH USING STATE?
-  // Yeaah, I'm sending them down with props.
-  // JESSE, We never deal with transient updates like this, use refs!
-  // Ok Mr. White, we always want to directly mutate our meshes.
-
+export default function RemotePlayer(id: any, ...props: any) {
   const player = useRef<any>();
 
   useEffect(() => {
@@ -34,6 +28,18 @@ export default function RemotePlayer(props: boxProps) {
     <mesh {...props} ref={player} position={[x, 5, x]}>
       <boxGeometry args={[1.5, 1.5, 1.5]} />
       <meshStandardMaterial color={'gold'} />
+      <Html
+        name="html"
+        transform
+        distanceFactor={20}
+        position={[2, 10, 0]}
+        style={{
+          fontSize: '35px',
+          padding: '10px 18px',
+        }}
+      >
+        <h1>{id.id}</h1>
+      </Html>
     </mesh>
   );
 }

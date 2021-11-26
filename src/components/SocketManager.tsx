@@ -2,6 +2,7 @@
 //@ts-nocheck
 import { useEffect, useState } from 'react';
 import useStore from '@/components/helpers/store';
+import RemotePlayer from '@/components/RemotePlayer';
 
 export default function SocketManager() {
   console.log('SocketManager component load/update');
@@ -48,7 +49,7 @@ export default function SocketManager() {
     console.log(`Adding player: ${id}`);
     setRemotePlayer((remotePlayers) => [
       ...remotePlayers,
-      { id: id, mesh: addPlayerHook() },
+      { id: id, mesh: <RemotePlayer id={id} /> },
     ]);
   }
 

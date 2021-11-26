@@ -55,19 +55,6 @@ export default function PlayerBox(props: boxProps) {
   }, [ref, api]);
 
   useFrame(() => {
-    // console.log(quaternionRef.current);
-    // testQuart =
-    //   (quaternionRef.current[0],
-    //   quaternionRef.current[1],
-    //   quaternionRef.current[2],
-    //   quaternionRef.current[3]);
-
-    // testQuart2 = testQuart.toArray(testArray);
-    // console.log(testQuart);
-
-    //@ts-ignore
-    ray.origin.copy(positionRef.current);
-
     frontBackVector.set(0, 0, (keyBack ? 1 : 0) - (keyForward ? 1 : 0));
     sidesVector.set((keyLeft ? 1 : 0) - (keyRight ? 1 : 0), 0, 0);
 

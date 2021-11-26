@@ -55,7 +55,7 @@ export default function PlayerBox(props: boxProps) {
   }, [ref, api]);
 
   useFrame(() => {
-    console.log(quaternionRef.current);
+    // console.log(quaternionRef.current);
     // testQuart =
     //   (quaternionRef.current[0],
     //   quaternionRef.current[1],

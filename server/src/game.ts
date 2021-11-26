@@ -29,9 +29,16 @@ export class GameServer {
       },
     });
     this.handleSocketEvents();
+    // this.playerData();
   }
 
   private handleSocketEvents(): void {
+    // emit this.io.sockets.emit('playerPositions', this.players); every 16ms
+
+    setInterval(() => {
+      this.io.sockets.emit('playerPositions', this.players);
+    }, 16);
+
     this.io.on('connection', (socket) => {
       // socket.on('initRequest', () => {
       console.log(`User ${socket.id} connected`);

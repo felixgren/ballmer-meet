@@ -48,6 +48,12 @@ export default function SocketManager() {
   }, [socket]);
 
   useEffect(() => {
+    socket.on('playerPositions', (players) => {
+      console.log(players);
+    });
+  }, [socket]);
+
+  useEffect(() => {
     socket.on('player-disconnect', (id, playerCount) => {
       console.log(`${id} disconnected. There are now ${playerCount} users!`);
       removeRemotePlayer(id);

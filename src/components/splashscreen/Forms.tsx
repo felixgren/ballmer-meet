@@ -7,7 +7,7 @@ const Forms = () => {
   const sectionRef = useRef(null);
   useEffect(() => {}, [sectionRef]);
 
-  const handleClick = (index) => {
+  const handleClick = (e, index) => {
     if (sectionRef.current) {
       Object.values(sectionRef.current.children).map((item) => {
         item.style.display = 'none';
@@ -31,13 +31,13 @@ const Forms = () => {
           className={styles.submitButtonCreateRoom}
           type="submit"
           value="Create Call"
-          onClick={(e) => handleClick(1)}
+          onClick={(e) => handleClick(e, 1)}
         />
         <input
           className={styles.submitButtonCreateRoom}
           type="submit"
           value="Join Call"
-          onClick={(e) => handleClick(3)}
+          onClick={(e) => handleClick(e, 3)}
         />
       </div>
 
@@ -67,21 +67,25 @@ const Forms = () => {
             id="rooms"
           >
             <option value="2">2</option>
+            <option value="3">3</option>
             <option value="4">4</option>
+            <option value="5">5</option>
             <option value="6">6</option>
           </select>
         </label>
 
-        <input
-          className={styles.submitButtonCreateRoom}
-          type="submit"
-          value="Create call"
-          onClick={(e) => handleClick(2)}
-        />
+        <Link href="/game" passHref={true}>
+          <input
+            className={styles.submitButtonCreateRoom}
+            type="submit"
+            value="Create call"
+            // onClick={(e) => { handleClick(e, 2);} } // remove for presentation
+          />
+        </Link>
       </form>
 
       <div className={styles.displayInviteLink}>
-        <h1 className={styles.generatedLink}>Here is your link, bitch</h1>
+        <h1 className={styles.generatedLink}>Here is your link</h1>
         <h2 className={styles.printLink}>THIS IS THE URL</h2>
         {/* Här ska man skickas direkt till spelet */}
         <Link href="/game" passHref={true}>
@@ -94,7 +98,7 @@ const Forms = () => {
       </div>
 
       <form className={styles.formContainerInvited}>
-        <h1 className={styles.welcome}>Welcome to call (call id)</h1>
+        <h1 className={styles.welcome}>Welcome to call</h1>
         <h2 className={styles.instructions}>
           Please choose a username and an invite-link to join call
         </h2>

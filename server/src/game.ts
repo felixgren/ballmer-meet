@@ -33,8 +33,6 @@ export class GameServer {
   }
 
   private handleSocketEvents(): void {
-    // emit this.io.sockets.emit('playerPositions', this.players); every 16ms
-
     setInterval(() => {
       this.io.sockets.emit('playerPositions', this.players);
     }, 16);
@@ -97,14 +95,7 @@ export class GameServer {
         }
       });
 
-      // socket.on('updateClientPos', (position) => {
-      //   if (this.players[socket.id]) {
-      //     this.players[socket.id].position = position;
-
-      //   }
-      // });
-
-      console.log(this.players);
+      // console.log(this.players);
       // });
     });
   }

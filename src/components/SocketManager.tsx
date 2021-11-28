@@ -6,19 +6,10 @@ import RemotePlayer from '@/components/RemotePlayer';
 
 export default function SocketManager() {
   console.log('SocketManager component load/update');
-  const socket = useStore((state) => state.socket);
 
+  const socket = useStore((state) => state.socket);
   const [remotePlayers, setRemotePlayer] = useState([]);
   const [remoteMeshes, setMeshes] = useState([]);
-
-  // useStore.setState({ remotePlayers:  });
-
-  // useStore.subscribe()
-
-  // const unsub1 = useStore.subscribe(console.log);
-
-  //   useFrame(() => (ref.current.position.x = api.getState().x))
-  // return <mesh ref={ref} />
 
   useEffect(() => {
     socket.emit('initRequest', () => {});

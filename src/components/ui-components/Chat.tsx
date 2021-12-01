@@ -10,12 +10,12 @@ const Chat = () => {
         <div className={styles.chatMessageWrapper}>
           <p className={styles.sentUserMessage}>Userman </p>
           <p className={styles.chatMessage}>
-            BRO!!! have you heard the new crazy frog??
+            BRO!!! have you seen the new win9x release??
           </p>
         </div>
         <div className={styles.chatMessageWrapper}>
           <p className={styles.sentUserMessage}>Userbro </p>
-          <p className={styles.chatMessage}>word!! CF is da bomb!!</p>
+          <p className={styles.chatMessage}>word!! ME suxx bro!!</p>
         </div>
       </div>
       <div className={styles.inputBox}>

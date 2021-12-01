@@ -24,19 +24,13 @@ export default function PlayerBox(props: boxProps) {
     position: [1, 5, 1],
     type: 'Dynamic',
   }));
-  const velocity = useRef<number[]>([0, 0, 0]);
+  const velocityRef = useRef<number[]>([0, 0, 0]);
   const positionRef = useRef<number[]>([0, 0, 0]);
   const quaternionRef = useRef<number[]>([0, 0, 0]);
-  const testQuart = new Quaternion();
-
-  const testQuart2 = testQuart.toArray();
-
-  const mutation = useStore((state) => state.mutation);
-  const { ray } = mutation;
 
   // Velocity Ref
   useEffect(() => {
-    api.velocity.subscribe((v) => (velocity.current = v));
+    api.velocity.subscribe((v) => (velocityRef.current = v));
   }, [api.velocity]);
 
   // Position Ref
@@ -50,7 +44,6 @@ export default function PlayerBox(props: boxProps) {
   }, [api.quaternion]);
 
   useEffect(() => {
-    // console.log('Set boxRef BoxApi states');
     useStore.setState({ boxRef: ref, boxAPI: api });
   }, [ref, api]);
 
@@ -64,17 +57,24 @@ export default function PlayerBox(props: boxProps) {
       .multiplyScalar(speed)
       .applyEuler(camera.rotation);
 
-    api.velocity.set(playerVelocity.x, velocity.current[1], playerVelocity.z);
+    api.velocity.set(
+      playerVelocity.x,
+      velocityRef.current[1],
+      playerVelocity.z
+    );
 
-    if (keyJump && Math.abs(parseInt(velocity.current[1].toFixed(2))) < 0.05) {
-      api.velocity.set(velocity.current[0], 8, velocity.current[2]);
+    if (
+      keyJump &&
+      Math.abs(parseInt(velocityRef.current[1].toFixed(2))) < 0.05
+    ) {
+      api.velocity.set(velocityRef.current[0], 8, velocityRef.current[2]);
     }
 
     socket.emit('updateClientPos', positionRef.current, quaternionRef.current);
   });
 
   return (
-    <mesh {...props} ref={ref} name={'Player'}>
+    <mesh {...props} ref={ref} name={'Player'} castShadow>
       <AudioListener />
       <boxGeometry args={[1.5, 1.5, 1.5]} />
       <meshStandardMaterial color={'gold'} />

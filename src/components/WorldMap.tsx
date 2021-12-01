@@ -5,7 +5,7 @@ import {
   useCylinder,
 } from '@react-three/cannon';
 import { useFrame } from '@react-three/fiber';
-import useStore from '@/components/helpers/store';
+import { useStore } from '@/components/helpers/store';
 import { useRef } from 'react';
 import { SpotLightHelper } from 'three';
 import { useHelper, softShadows } from '@react-three/drei';

@@ -3,7 +3,7 @@
 
 import { useEffect, useState } from 'react';
 import { AudioListener as ThreeListener } from 'three';
-import useStore from '@/components/helpers/store';
+import { useStore } from '@/components/helpers/store';
 
 export default function AudioListener() {
   const [listener] = useState(() => new ThreeListener());

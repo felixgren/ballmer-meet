@@ -2,7 +2,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { useFrame } from '@react-three/fiber';
 import { Quaternion, Vector3 } from 'three';
-import useStore from '@/components/helpers/store';
+import { useStore } from '@/components/helpers/store';
 import { Html } from '@react-three/drei';
 
 export default function RemotePlayer(id: any, ...props: any) {

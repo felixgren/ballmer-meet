@@ -1,6 +1,6 @@
 import { useCylinder, CylinderProps } from '@react-three/cannon';
 import { Color } from 'three';
-import useStore from '@/components/helpers/store';
+import { useStore } from '@/components/helpers/store';
 
 interface ZoneProps extends CylinderProps {
   color: string;

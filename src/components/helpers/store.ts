@@ -18,4 +18,4 @@ const useStore = create((set, get) => {
   };
 });
 
-export default useStore;
+export { useStore };

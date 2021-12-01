@@ -6,7 +6,7 @@ import { useThree, useFrame } from '@react-three/fiber';
 import { Quaternion, Vector3 } from 'three';
 import { useKeysToMove } from './hooks/userKeyboard';
 import AudioListener from '@/components/utils/AudioListener';
-import useStore from '@/components/helpers/store';
+import { useStore } from '@/components/helpers/store';
 
 const speed: number = 20;
 const playerVelocity = new Vector3();

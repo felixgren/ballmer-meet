@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 //@ts-nocheck
 import { useEffect, useState } from 'react';
-import useStore from '@/components/helpers/store';
+import { useStore } from '@/components/helpers/store';
 import RemotePlayer from '@/components/RemotePlayer';
 
 export default function SocketManager() {

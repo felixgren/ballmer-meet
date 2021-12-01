@@ -4,7 +4,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { AudioLoader, AudioListener } from 'three';
 import { useLoader } from '@react-three/fiber';
-import useStore from '@/components/helpers/store';
+import { useStore } from '@/components/helpers/store';
 
 export default function PositionalAudio({ url }) {
   const sound = useRef();

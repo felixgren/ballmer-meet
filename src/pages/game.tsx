@@ -1,6 +1,6 @@
 import { Canvas } from '@react-three/fiber';
 import { Sky, OrbitControls } from '@react-three/drei';
-import { Physics } from '@react-three/cannon';
+import { Physics, Debug } from '@react-three/cannon';
 import Map from '@/components/WorldMap';
 import LocalPlayer from '@/components/LocalPlayer';
 import JukeBoxFactory from '@/components/JukeBoxFactory';
@@ -8,8 +8,10 @@ import TriggerZones from '@/components/TriggerZones';
 import styles from '../styles/index.module.css';
 import SocketManager from '@/components/SocketManager';
 import UI from '@/components/ui-components/Group';
+// import { useToggle } from './useToggle'
 
 const Game: React.FC = () => {
+  // const ToggledDebug = useToggle(Debug, 'debug')
   return (
     <div className={styles.container}>
       <UI />

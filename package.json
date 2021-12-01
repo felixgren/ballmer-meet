@@ -13,6 +13,7 @@
     "@react-three/cannon": "^4.0.1",
     "@react-three/drei": "^7.20.0",
     "@react-three/fiber": "^7.0.18",
+    "leva": "^0.9.16",
     "next": "12.0.3",
     "react": "17.0.2",
     "react-dom": "17.0.2",

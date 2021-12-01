@@ -32,7 +32,7 @@ export default function RemotePlayer(id: any, ...props: any) {
   const color = `#${randomColor}`;
 
   return (
-    <mesh {...props} ref={playerRef}>
+    <mesh {...props} ref={playerRef} castShadow>
       <boxGeometry args={[1.5, 1.5, 1.5]} />
       <meshStandardMaterial color={color} />
     </mesh>

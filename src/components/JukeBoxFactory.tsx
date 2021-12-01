@@ -13,7 +13,7 @@ export default function JukeBoxFactory(props: boxProps) {
       type: 'Dynamic',
     }));
     return (
-      <mesh {...{ position, ref }} name={name}>
+      <mesh {...{ position, ref }} name={name} castShadow>
         <AudioEmitter url={tune} />
         <boxGeometry args={args} />
         <meshStandardMaterial color={color} />
@@ -25,6 +25,8 @@ export default function JukeBoxFactory(props: boxProps) {
           style={{
             fontSize: '35px',
             padding: '10px 18px',
+            pointerEvents: 'none',
+            userSelect: 'none',
           }}
         >
           <h1>{name}</h1>

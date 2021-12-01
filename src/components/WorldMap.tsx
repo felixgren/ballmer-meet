@@ -1,26 +1,38 @@
+import { useStore } from '@/components/helpers/store';
+import { useRef } from 'react';
+import { SpotLightHelper, Color } from 'three';
+import { useFrame } from '@react-three/fiber';
+import { useHelper, softShadows, Environment } from '@react-three/drei';
 import {
   usePlane,
   PlaneProps,
   CylinderProps,
   useCylinder,
 } from '@react-three/cannon';
-import { useFrame } from '@react-three/fiber';
-import { useStore } from '@/components/helpers/store';
-import { useRef } from 'react';
-import { SpotLightHelper } from 'three';
-import { useHelper, softShadows } from '@react-three/drei';
 
 function World({ args, position, rotation }: CylinderProps) {
   const [ref] = useCylinder(() => ({ type: 'Static', args, position }));
+  const black = new Color('#000000');
   return (
     <group>
       <mesh {...{ position, ref }} receiveShadow>
         <cylinderGeometry args={args} />
-        <meshPhongMaterial attach="material" color="#37363a" />
+        <meshStandardMaterial
+          attach="material"
+          color="#37363a"
+          roughness={0.9}
+          metalness={1}
+          emissive={black}
+          emissiveIntensity={0.6}
+        />
       </mesh>
       <mesh {...{ rotation }} position={[0, 0.05, 0]} receiveShadow>
         <circleGeometry attach="geometry" args={[60, 128]} />
-        <meshPhongMaterial attach="material" color="#403e4c" />
+        <meshStandardMaterial
+          attach="material"
+          color="#403e4c"
+          metalness={0.5}
+        />
       </mesh>
     </group>
   );
@@ -48,16 +60,16 @@ export default function WorldMap() {
 
   const spotLight2 = useRef();
   const spotLight1 = useRef();
-  useHelper(spotLight1, SpotLightHelper);
-  useHelper(spotLight2, SpotLightHelper);
+  // useHelper(spotLight1, SpotLightHelper);
+  // useHelper(spotLight2, SpotLightHelper);
 
-  softShadows({
-    frustum: 3.75, // Frustum width (default: 3.75) must be a float
-    size: 0.005, // World size (default: 0.005) must be a float
-    near: 9.5, // Near plane (default: 9.5) must be a float
-    samples: 17, // Samples (default: 17) must be a int
-    rings: 11, // Rings (default: 11) must be a int
-  });
+  // softShadows({
+  //   frustum: 3.75, // Frustum width (default: 3.75) must be a float
+  //   size: 0.005, // World size (default: 0.005) must be a float
+  //   near: 9.5, // Near plane (default: 9.5) must be a float
+  //   samples: 17, // Samples (default: 17) must be a int
+  //   rings: 11, // Rings (default: 11) must be a int
+  // });
 
   useFrame(() => {
     if (boxAPI && boxRef && respawnPlayer.current) {
@@ -90,6 +102,7 @@ export default function WorldMap() {
           respawnPlayer.current = e;
         }}
       />
+      {/* <Environment background={false} preset={'city'} /> */}
       <spotLight
         ref={spotLight1}
         position={[150, 75, -225]}

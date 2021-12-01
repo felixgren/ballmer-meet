@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 //@ts-nocheck
 import { useEffect, useState } from 'react';
 import { useStore } from '@/components/helpers/store';
@@ -24,7 +23,7 @@ export default function SocketManager() {
           }
         }
       } else {
-        // console.log('nope!');
+        // console.log('nothing');
       }
     });
   }, [socket]);
@@ -36,15 +35,7 @@ export default function SocketManager() {
       );
       addRemotePlayer(id);
     });
-  }, [socket]);
 
-  // useEffect(() => {
-  //   socket.on('playerPositions', (players) => {
-  //     console.log(players);
-  //   });
-  // }, [socket]);
-
-  useEffect(() => {
     socket.on('player-disconnect', (id, playerCount) => {
       console.log(`${id} disconnected. There are now ${playerCount} users!`);
       removeRemotePlayer(id);
@@ -66,17 +57,6 @@ export default function SocketManager() {
     ]);
   }
 
-  function addPlayerHook() {
-    let y = Math.floor(Math.random() * 20) - 10;
-    let x = Math.floor(Math.random() * 20) - 10;
-    return (
-      <mesh position={[x, 10, y]}>
-        <boxBufferGeometry attach="geometry" args={[1, 1, 1]} />
-        <meshStandardMaterial attach="material" color={0x00ff00} />
-      </mesh>
-    );
-  }
-
   useEffect(() => {
     setMeshes(
       remotePlayers.map((player) => {
@@ -84,7 +64,7 @@ export default function SocketManager() {
         return player.mesh;
       })
     );
-  }, [socket, remotePlayers]);
+  }, [remotePlayers, socket]);
 
   return <group> {remoteMeshes} </group>;
 }
